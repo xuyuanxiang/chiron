@@ -1,0 +1,15 @@
+* text eol=lf
+*.js text
+*.jsx text
+*.ts text
+*.tsx text
+*.json text
+*.wxml text
+*.wxss text
+*.less text
+*.scss text
+*.css text
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
