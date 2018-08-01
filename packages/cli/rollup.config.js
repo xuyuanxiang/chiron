@@ -24,12 +24,17 @@ export default {
     'events',
     'child_process',
     'util',
+    'dns',
   ],
   plugins: [
     json(),
     babel({
       include: 'src/**',
-      exclude: ['node_modules/**', '**/__tests__/*', '**/__mocks__/*'],
+      exclude: [
+        'node_modules/**',
+        '**/__tests__/*.spec.ts',
+        '**/__mocks__/*.ts',
+      ],
     }),
     resolve(),
     commonjs({

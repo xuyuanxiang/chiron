@@ -4,6 +4,7 @@
   "license": "MIT",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
+  "jsnext:main": "lib/index.esm.js",
   "typeings": "lib/index.d.ts",
   "files": [
     "lib"

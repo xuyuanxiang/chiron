@@ -27,6 +27,8 @@ program
     if (typeof name !== 'string' || !name) {
       name = '.';
     }
+    // const result = sync('node', [require.resolve('./commands/init'), name],
+    //   { stdio: 'inherit' });
     const { init } = await import('./commands/init');
     await init(name);
   });
