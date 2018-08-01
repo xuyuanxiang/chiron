@@ -11,16 +11,16 @@ export default [
     output: {
       dir: 'lib',
       file: 'index.esm.js',
-      format: 'es'
-    }
+      format: 'es',
+    },
   },
   {
     output: {
       dir: 'lib',
       file: 'index.cjs.js',
-      format: 'cjs'
-    }
-  }
+      format: 'cjs',
+    },
+  },
 ].map(it =>
   Object.assign(it, {
     input: 'src/index.ts',
@@ -29,13 +29,13 @@ export default [
       json(),
       babel({
         exclude: 'node_modules/**',
-        include: 'src/**'
+        include: 'src/**',
       }),
       resolve(),
       commonjs({
-        extensions: ['.ts', '.js']
+        extensions: ['.ts', '.js'],
       }),
-      production && terser()
-    ]
-  })
+      production && terser(),
+    ],
+  }),
 );

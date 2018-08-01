@@ -10,7 +10,7 @@ export default {
   input: 'src/index.ts',
   output: {
     dir: 'lib',
-    format: 'cjs'
+    format: 'cjs',
   },
   external: [
     'path',
@@ -23,19 +23,19 @@ export default {
     'events',
     'child_process',
     'fs',
-    'util'
+    'util',
   ],
   plugins: [
     json(),
     babel({
       include: 'src/**',
-      exclude: ['node_modules/**', '**/__tests__/*', '**/__mocks__/*']
+      exclude: ['node_modules/**', '**/__tests__/*', '**/__mocks__/*'],
     }),
     resolve(),
     commonjs({
-      extensions: ['.ts', '.js']
+      extensions: ['.ts', '.js'],
     }),
-    production && terser()
+    production && terser(),
   ],
-  experimentalCodeSplitting: true
+  experimentalCodeSplitting: true,
 };

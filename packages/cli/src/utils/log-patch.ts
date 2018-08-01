@@ -11,7 +11,7 @@ function shouldLog(level: keyof Console): boolean {
 LEVELS.forEach(level => {
   const origin = console[level];
   if (typeof origin === 'function') {
-    console[level] = function (...args: string[]) {
+    console[level] = function(...args: string[]) {
       if (shouldLog(level)) {
         let color: ((...text: string[]) => string);
         switch (level) {
@@ -27,7 +27,10 @@ LEVELS.forEach(level => {
           default:
             color = chalk.hex('#888');
         }
-        origin.apply(console, [`[${level.toUpperCase()}] `].concat(args).map(arg => color(arg)));
+        origin.apply(
+          console,
+          [`[${level.toUpperCase()}] `].concat(args).map(arg => color(arg)),
+        );
       }
     };
   }

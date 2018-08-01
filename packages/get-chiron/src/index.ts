@@ -26,20 +26,36 @@ if (!fail(getYarnBin)) {
 
 npmInstall();
 
-
 function yarnInstall(prefix: string) {
-  sync('npm', ['config', 'set', 'registry', 'https://registry.npm.wosai-inc.com/']);
-  sync('yarn', ['config', 'set', 'registry', 'https://registry.npm.wosai-inc.com/']);
+  sync('npm', [
+    'config',
+    'set',
+    'registry',
+    'https://registry.npm.wosai-inc.com/',
+  ]);
+  sync('yarn', [
+    'config',
+    'set',
+    'registry',
+    'https://registry.npm.wosai-inc.com/',
+  ]);
   sync('yarn', ['config', 'set', 'prefix', prefix]);
-  sync('yarn', ['global', 'add', '@wosai/chiron-script', '--prefix', prefix], {stdio: 'inherit'});
+  sync('yarn', ['global', 'add', '@wosai/chiron-script', '--prefix', prefix], {
+    stdio: 'inherit',
+  });
   sync('yarn', ['config', 'set', 'registry', registry]);
-  sync('npm', ['config', 'set', 'registry', registry], {stdio: 'inherit'});
+  sync('npm', ['config', 'set', 'registry', registry], { stdio: 'inherit' });
 }
 
 function npmInstall() {
-  sync('npm', ['config', 'set', 'registry', 'https://registry.npm.wosai-inc.com/']);
-  sync('npm', ['install', '-g', '@wosai/chiron-script'], {stdio: 'inherit'});
-  sync('npm', ['config', 'set', 'registry', registry], {stdio: 'inherit'});
+  sync('npm', [
+    'config',
+    'set',
+    'registry',
+    'https://registry.npm.wosai-inc.com/',
+  ]);
+  sync('npm', ['install', '-g', '@wosai/chiron-script'], { stdio: 'inherit' });
+  sync('npm', ['config', 'set', 'registry', registry], { stdio: 'inherit' });
 }
 
 function failIfy(result?: { error?: Error }): void {
