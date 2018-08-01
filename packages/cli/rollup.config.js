@@ -25,6 +25,7 @@ export default {
     'child_process',
     'util',
     'dns',
+    'webpack-serve',
   ],
   plugins: [
     json(),
@@ -38,9 +39,6 @@ export default {
     }),
     resolve(),
     commonjs({
-      namedExports: {
-        '../../node_modules/commander/index.js': ['name', 'parse', 'version'],
-      },
       extensions: ['.ts', '.js'],
     }),
     production && terser(),
