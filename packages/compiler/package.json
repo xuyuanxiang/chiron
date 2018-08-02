@@ -59,6 +59,40 @@
         }
       ],
       "@babel/preset-typescript"
+    ],
+    "plugins": [
+      "@babel/plugin-syntax-dynamic-import"
+    ],
+    "env": {
+      "test": {
+        "presets": [
+          "@babel/preset-env"
+        ]
+      }
+    }
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "ts",
+      "tsx",
+      "json",
+      "node"
+    ],
+    "testEnvironment": "node",
+    "testRegex": "(src/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+    "transform": {
+      "^.+\\.tsx?$": "babel-jest"
+    },
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!src/**/*.spec.{ts,tsx}",
+      "!src/**/*.d.ts"
+    ],
+    "reporters": [
+      "default",
+      "jest-spec-reporter"
     ]
   }
 }

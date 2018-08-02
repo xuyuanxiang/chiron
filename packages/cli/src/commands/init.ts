@@ -2,7 +2,7 @@ import { lookup } from 'dns';
 import { join } from 'path';
 import { readFileSync, writeFileSync, statSync, existsSync } from 'fs';
 import { sync as spawn } from 'cross-spawn';
-import { sync as del } from 'del';
+import { del } from '../utils/del';
 
 export function init(dir: string = '.') {
   lookup('github.com', err => {
@@ -39,7 +39,7 @@ function clone(repository: string, dir: string): never | void {
 function initialize(dir: string): void {
   const context = process.cwd();
   const root = join(context, dir);
-  del(join(root, '.git'), { force: true });
+  del(join(root, '.git'));
   const pkgFile = join(root, 'package.json');
   if (existsSync(pkgFile) && statSync(pkgFile).isFile()) {
     const pkgStr = readFileSync(pkgFile, 'utf8');

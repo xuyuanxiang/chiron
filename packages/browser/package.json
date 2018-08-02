@@ -1,0 +1,22 @@
+{
+  "name": "browser",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.0",
+    "mini-css-extract-plugin": "^0.4.1",
+    "postcss-loader": "^2.1.6",
+    "style-loader": "^0.21.0",
+    "svelte": "^2.9.9",
+    "svelte-loader": "^2.10.0",
+    "webpack": "^4.16.3",
+    "webpack-command": "^0.4.1",
+    "webpack-serve": "^2.0.2"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "webpack-serve --content public"
+  }
+}

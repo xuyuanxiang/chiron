@@ -16,21 +16,36 @@ const program = sade('chiron')
   .option('-d, --debug', 'enable debug info');
 
 program
-  .command('init [name]')
-  .describe('Initialize chiron app')
+  .command('init [project]')
+  .describe('Initialize chiron project')
   .example('init my-awesome-project')
-  .action(async (name, { debug }) => {
+  .action(async (project, { debug }) => {
     if (debug === true) {
       global.__LOG_LEVEL__ = 'debug';
     }
     console.debug('command init, debug=', debug);
-    if (typeof name !== 'string' || !name) {
-      name = '.';
+    if (typeof project !== 'string' || !project) {
+      project = '.';
     }
     // const result = sync('node', [require.resolve('./commands/init'), name],
     //   { stdio: 'inherit' });
     const { init } = await import('./commands/init');
-    await init(name);
+    await init(project);
   });
 
+program
+  .command('compile')
+  .describe('Compile chiron project')
+  .action(async ({ debug }) => {
+    if (debug === true) {
+      global.__LOG_LEVEL__ = 'debug';
+    }
+    console.log('debug=', debug);
+    const { compile } = await import('./commands/compile');
+    try {
+      await compile();
+    } catch (e) {
+      console.error('compile failed:', e.message);
+    }
+  });
 program.parse(process.argv);
