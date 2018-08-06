@@ -2,7 +2,7 @@
   "name": "@wosai/chiron-web-compat",
   "version": "1.0.0-beta.0",
   "license": "MIT",
-  "main": "lib/index.cjs.js",
+  "main": "lib/index.umd.js",
   "module": "lib/index.js",
   "jsnext:main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -10,13 +10,12 @@
     "lib"
   ],
   "scripts": {
-    "dev": "cross-env NODE_ENV=development tsc -w",
+    "dev": "cross-env NODE_ENV=development BABEL_ENV=development webpack",
     "test": "cross-env NODE_ENV=test BABEL_ENV=test jest -u",
-    "build": "cross-env NODE_ENV=production BABEL_ENV=production rollup -c && tsc --emitDeclarationOnly"
+    "build": "cross-env NODE_ENV=production BABEL_ENV=production webpack"
   },
   "dependencies": {
-    "react": "15.x",
-    "react-dom": "15.x"
+    "preact": "^8.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.56",
@@ -28,65 +27,79 @@
     "@types/jest": "^23.3.1",
     "@types/node": "8.x",
     "@types/prop-types": "^15.5.4",
-    "@types/react": "^16.4.7",
-    "@types/react-dom": "^16.0.6",
+    "@types/webpack": "^4.4.9",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^23.4.2",
+    "babel-loader": "^8.0.0-beta.4",
+    "clean-webpack-plugin": "^0.1.19",
     "cross-env": "^5.2.0",
+    "css-loader": "^1.0.0",
     "enzyme": "^3.3.0",
+    "file-loader": "^1.1.11",
     "jest": "^23.4.2",
     "jest-enzyme": "^6.0.2",
     "jest-spec-reporter": "^1.0.4",
     "less": "^3.8.0",
+    "less-loader": "^4.1.0",
+    "mini-css-extract-plugin": "^0.4.1",
+    "postcss-loader": "^2.1.6",
+    "postcss-preset-env": "^5.3.0",
+    "postcss-px2rem": "^0.3.0",
     "prop-types": "^15.6.2",
-    "rollup": "^0.63.5",
-    "rollup-plugin-alias": "^1.4.0",
-    "rollup-plugin-babel": "^4.0.0-beta.8",
-    "rollup-plugin-commonjs": "^9.1.4",
-    "rollup-plugin-node-resolve": "^3.3.0",
-    "typescript": "^3.0.1"
+    "style-loader": "^0.21.0",
+    "typescript": "^3.0.1",
+    "uglifyjs-webpack-plugin": "^1.2.7",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.16.5",
+    "webpack-command": "^0.4.1"
   },
   "browserslist": [
-    "> 0.05%",
-    "not dead"
+    "android >= 4.4",
+    "ios >= 9.3"
   ],
   "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "modules": false
-        }
-      ],
-      "@babel/preset-react",
-      "@babel/preset-typescript"
-    ],
     "plugins": [
       "@babel/plugin-syntax-dynamic-import"
     ],
     "env": {
       "development": {
         "presets": [
+          "@babel/preset-env",
           [
-            "@babel/preset-env",
+            "@babel/preset-typescript",
             {
-              "modules": false
+              "jsxPragma": "h"
             }
-          ],
-          [
-            "@babel/preset-react",
-            {
-              "development": true
-            }
-          ],
-          "@babel/preset-typescript"
+          ]
         ]
       },
       "test": {
         "presets": [
+          [
+            "@babel/preset-env",
+            {
+              "targets": {
+                "node": "8.0.0"
+              }
+            }
+          ],
+          [
+            "@babel/preset-typescript",
+            {
+              "jsxPragma": "h"
+            }
+          ]
+        ]
+      },
+      "production": {
+        "presets": [
           "@babel/preset-env",
-          "@babel/preset-react",
-          "@babel/preset-typescript"
+          [
+            "@babel/preset-typescript",
+            {
+              "jsxPragma": "h"
+            }
+          ]
         ]
       }
     }

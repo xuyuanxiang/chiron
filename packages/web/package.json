@@ -85,13 +85,13 @@
           [
             "@babel/preset-react",
             {
-              "pragma": "preact.h"
+              "pragma": "h"
             }
           ],
           [
             "@babel/preset-typescript",
             {
-              "jsxPragma": "preact.h"
+              "jsxPragma": "h"
             }
           ]
         ]

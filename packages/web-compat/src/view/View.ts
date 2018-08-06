@@ -1,12 +1,12 @@
-import { createElement, ReactNode, StatelessComponent } from 'react';
+import { h, RenderableProps, FunctionalComponent } from 'preact';
 import { ViewProps } from './view-props';
 
-export const View: StatelessComponent<ViewProps> = ({
+export const View: FunctionalComponent<ViewProps> = ({
   children,
   tagName = 'div',
   ...props
-}: ViewProps & { children?: ReactNode }) =>
-  createElement(tagName, props, children);
+}: RenderableProps<ViewProps>) =>
+  h(tagName, props, children ? [children] : null);
 
 View.defaultProps = {
   tagName: 'div',

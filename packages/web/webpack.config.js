@@ -14,12 +14,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
-    alias: prod
-      ? {
-          react: 'preact-compat',
-          'react-dom': 'preact-compat',
-        }
-      : {},
   },
   output: {
     path: path.join(__dirname, outputDir),
@@ -31,7 +25,7 @@ module.exports = {
   externals: prod
     ? {
         preact: 'preact',
-        'preact-compat': 'preact-compat',
+        '@wosai/chiron-web-compat': '__CHIRON',
       }
     : {},
   module: {
@@ -104,6 +98,7 @@ module.exports = {
     }),
   ],
   optimization: {
+    minimize: false,
     minimizer: [
       new UglifyJsPlugin({
         cache: !prod,

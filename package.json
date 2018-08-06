@@ -7,7 +7,7 @@
   "scripts": {
     "start": "lerna run start --parallel --concurrency 3",
     "build": "lerna run build --stream",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,less,scss,md,html}\""
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,less,scss,md}\""
   },
   "engines": {
     "node": ">= 8.0.0"

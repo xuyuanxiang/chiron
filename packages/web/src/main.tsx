@@ -1,12 +1,12 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { render, h } from 'preact';
 import { App, Page, View } from '@wosai/chiron-web-compat';
 
-ReactDOM.render(
+const container = render(
   <App>
-    <Page path="pages/index">
+    <Page>
       <View>Hello</View>
     </Page>
   </App>,
   document.body,
+  container,
 );

@@ -1,8 +1,8 @@
-import { Children, ReactNode, StatelessComponent } from 'react';
+import { FunctionalComponent, RenderableProps, h } from 'preact';
 import { AppProps } from './app-props';
 
-export const App: StatelessComponent<AppProps> = ({
+export const App: FunctionalComponent<AppProps> = ({
   children,
-}: AppProps & { children?: ReactNode }) => Children.only(children);
+}: RenderableProps<AppProps>) => h('div', null, [children]);
 
 export default App;
