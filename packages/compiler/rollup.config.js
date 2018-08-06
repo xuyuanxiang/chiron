@@ -23,7 +23,7 @@ export default [
   },
 ].map(it =>
   Object.assign(it, {
-    input: 'src/index.ts',
+    input: 'src/main.tsx',
     external: ['path', 'assert', 'fs', 'events', 'util'],
     plugins: [
       json(),

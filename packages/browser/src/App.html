@@ -1,10 +1,28 @@
-<slot></slot>
-<h1>{name2}</h1>
+<svelte:window on:popstate="bindPopState(event)" />
 
-<style>
-	h1 {
-		color: purple;
-	}
-</style>
+<Page>
+  <View>
+    {$pages}
+  </View>
+</Page>
 
-<script></script>
+<script>
+  export default {
+    components: {
+      Page: './Page.html',
+      View: './View.html',
+    },
+    oncreate() {
+      const listener = this.store.on('state', ({ current }) => {
+        console.info('App store changed:', current);
+      });
+      console.info('App state:', this.store.get());
+      this.on('destroy', listener.cancel);
+    },
+    methods: {
+      bindPopState(event) {
+        console.info('App popstate event:', event);
+      },
+    },
+  };
+</script>

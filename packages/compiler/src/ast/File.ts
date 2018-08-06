@@ -6,7 +6,6 @@ export class File implements Node {
   start: number = 0;
   end: number;
   filename: string;
-
   program: Program;
 
   constructor(filename: string, program: Program) {

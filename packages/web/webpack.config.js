@@ -1,9 +1,8 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const history = require('connect-history-api-fallback');
-const convert = require('koa-connect');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
 
@@ -11,19 +10,34 @@ const outputDir = 'public';
 
 module.exports = {
   entry: {
-    app: ['./src/main.js'],
+    app: ['./src/main.tsx'],
   },
   resolve: {
-    extensions: ['.js', '.html'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+    alias: prod ? {
+      'react': 'preact-compat',
+      'react-dom': 'preact-compat',
+    } : {},
   },
   output: {
     path: path.join(__dirname, outputDir),
-    publicPath: '/',
     filename: '[name].js',
     chunkFilename: '[name].[id].js',
+    devtoolModuleFilenameTemplate: info =>
+      path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
+  externals: prod ? {
+    'preact': 'preact',
+    'preact-compat': 'preact-compat',
+  } : {},
   module: {
+    strictExportPresence: true,
     rules: [
+      {
+        enforce: 'pre',
+        test: /\.jsx?$/,
+        loader: 'source-map-loader',
+      },
       {
         oneOf: [
           {
@@ -46,43 +60,15 @@ module.exports = {
             ],
           },
           {
-            test: /\.html$/,
+            test: /\.tsx?$/,
             exclude: /node_modules/,
+            include: path.join(__dirname, 'src'),
             use: {
-              loader: 'svelte-loader',
+              loader: 'babel-loader',
               options: {
-                skipIntroByDefault: true,
-                nestedTransitions: true,
-                emitCss: true,
-                hotReload: true,
+                cacheDirectory: !prod,
               },
             },
-          },
-          {
-            test: /\.css$/,
-            use: [
-              prod ? MiniCssExtractPlugin.loader : 'style-loader',
-              {
-                loader: 'css-loader',
-                options: {
-                  importLoaders: 1,
-                  minimize: prod,
-                  sourceMap: !prod,
-                },
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  ident: 'postcss',
-                  plugins: () => [
-                    require('postcss-flexbugs-fixes'),
-                    require('autoprefixer')({
-                      flexbox: 'no-2009',
-                    }),
-                  ],
-                },
-              },
-            ],
           },
         ],
       },
@@ -111,22 +97,29 @@ module.exports = {
         minifyURLs: prod,
       },
     }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-    }),
   ],
-  devtool: prod ? false : 'source-map',
-  serve: {
-    open: true,
-    port: 4000,
-    content: [path.join(__dirname, outputDir)],
-    add: (app, middleware, options) => {
-      const historyOptions = {
-        verbose: true,
-        // ... see: https://github.com/bripkens/connect-history-api-fallback#options
-      };
-
-      app.use(convert(history(historyOptions)));
-    },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: !prod,
+        parallel: true,
+        sourceMap: !prod,
+        uglifyOptions: {
+          compress: {
+            warnings: false,
+            comparisons: false,
+            drop_console: true,
+          },
+          mangle: {
+            safari10: true,
+          },
+          output: {
+            comments: false,
+            ascii_only: true,
+          },
+        },
+      }),
+    ],
   },
+  devtool: prod ? false : 'source-map',
 };
