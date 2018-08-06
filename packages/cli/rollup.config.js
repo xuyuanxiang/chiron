@@ -26,7 +26,7 @@ export default {
     'util',
     'dns',
     'webpack-serve',
-    'assert'
+    'assert',
   ],
   plugins: [
     json(),

@@ -90,10 +90,11 @@ module.exports = {
   },
   mode,
   plugins: [
-    new CleanWebpackPlugin(
-      path.join(__dirname, outputDir),
-      { verbose: false, allowExternal: true, root: __dirname },
-    ),
+    new CleanWebpackPlugin(path.join(__dirname, outputDir), {
+      verbose: false,
+      allowExternal: true,
+      root: __dirname,
+    }),
     new HtmlWebpackPlugin({
       inject: true,
       template: path.join(__dirname, 'src', 'index.ejs'),
@@ -122,7 +123,7 @@ module.exports = {
     content: [path.join(__dirname, outputDir)],
     add: (app, middleware, options) => {
       const historyOptions = {
-        verbose: true,
+        verbose: false,
         // ... see: https://github.com/bripkens/connect-history-api-fallback#options
       };
 

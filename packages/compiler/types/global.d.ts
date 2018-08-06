@@ -1,6 +1,6 @@
 declare module 'posthtml' {
   export interface PostHTMLPluginConstructor {
-    new(): PostHTMLPlugin
+    new (): PostHTMLPlugin;
   }
 
   export interface PostHTMLPlugin {
@@ -14,7 +14,10 @@ declare module 'posthtml' {
 
     process(
       source: string,
-      options?: { sync?: boolean, directives?: { name: string, start: string, end: string }[] },
+      options?: {
+        sync?: boolean;
+        directives?: { name: string; start: string; end: string }[];
+      },
     ): { html: string };
   }
 

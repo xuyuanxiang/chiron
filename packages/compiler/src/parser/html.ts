@@ -6,14 +6,10 @@ function WXMLPlugin(tree: any) {
   return tree;
 }
 
-export function html(
-  strings: TemplateStringsArray,
-  ...values: any[]
-) {
+export function html(strings: TemplateStringsArray, ...values: any[]) {
   const source = strings[0];
   if (!source) return '';
-  return posthtml([WXMLPlugin])
-    .process(source, {
-      sync: true,
-    }).html;
+  return posthtml([WXMLPlugin]).process(source, {
+    sync: true,
+  }).html;
 }

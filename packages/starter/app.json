@@ -1,8 +1,5 @@
 {
-  "pages":[
-    "pages/index/index",
-    "pages/logs/logs"
-  ],
+  "pages": ["pages/index/index", "pages/logs/logs"],
   "workflow": {
     "qr_wap_pay": {
       "SHOP": {
@@ -10,10 +7,10 @@
       }
     }
   },
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   }
 }

@@ -9,7 +9,8 @@ interface AppConfig {
 export async function compile(): Promise<void> {
   const context = process.cwd();
   const appConfig: AppConfig | undefined = readJsonSync(
-    resolve(context, './app.json'));
+    resolve(context, './app.json'),
+  );
   if (appConfig && Array.isArray(appConfig.pages)) {
     for (const page of appConfig.pages) {
       console.info('begin compile:', page);

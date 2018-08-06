@@ -14,10 +14,12 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
-    alias: prod ? {
-      'react': 'preact-compat',
-      'react-dom': 'preact-compat',
-    } : {},
+    alias: prod
+      ? {
+          react: 'preact-compat',
+          'react-dom': 'preact-compat',
+        }
+      : {},
   },
   output: {
     path: path.join(__dirname, outputDir),
@@ -26,10 +28,12 @@ module.exports = {
     devtoolModuleFilenameTemplate: info =>
       path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
-  externals: prod ? {
-    'preact': 'preact',
-    'preact-compat': 'preact-compat',
-  } : {},
+  externals: prod
+    ? {
+        preact: 'preact',
+        'preact-compat': 'preact-compat',
+      }
+    : {},
   module: {
     strictExportPresence: true,
     rules: [
@@ -76,10 +80,11 @@ module.exports = {
   },
   mode,
   plugins: [
-    new CleanWebpackPlugin(
-      path.join(__dirname, outputDir),
-      { verbose: false, allowExternal: true, root: __dirname },
-    ),
+    new CleanWebpackPlugin(path.join(__dirname, outputDir), {
+      verbose: false,
+      allowExternal: true,
+      root: __dirname,
+    }),
     new HtmlWebpackPlugin({
       inject: true,
       template: path.join(__dirname, 'src', 'index.ejs'),

@@ -11,7 +11,6 @@ export interface AppHooksOptions {
 }
 
 export interface AppArguments {
-
   globalData: any;
 
   onLaunch(options: AppHooksOptions): void;
@@ -27,6 +26,4 @@ export interface AppArguments {
   [prop: string]: any;
 }
 
-export function App(args: AppArguments) {
-
-}
+export function App(args: AppArguments) {}

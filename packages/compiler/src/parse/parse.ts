@@ -6,6 +6,5 @@ export async function parse({ parser }: ParseOptions = {}): Promise<string> {
     parser = new SimpleParser();
   }
 
-
   return '';
 }

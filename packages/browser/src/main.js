@@ -4,11 +4,9 @@ import { parse as queryParse } from 'querystring';
 import { parse as urlParse } from 'url';
 import App from './App.html';
 
-function noop() {
+function noop() {}
 
-}
-
-window.onpopstate = function (event) {
+window.onpopstate = function(event) {
   console.info('popstate=', event);
 };
 
@@ -20,7 +18,14 @@ function parse(url = location.href) {
 const { path, query } = parse();
 
 class ChironStore extends SvelteDevStore {
-  navigateTo({ url, data, title, success = noop, fail = noop, complete = noop }) {
+  navigateTo({
+    url,
+    data,
+    title,
+    success = noop,
+    fail = noop,
+    complete = noop,
+  }) {
     history.pushState(data, title, url);
     const { navigationStack } = this.get();
     navigationStack.push(url);
@@ -42,7 +47,14 @@ class ChironStore extends SvelteDevStore {
     complete();
   }
 
-  redirectTo({ url, data, title, success = noop, fail = noop, complete = noop }) {
+  redirectTo({
+    url,
+    data,
+    title,
+    success = noop,
+    fail = noop,
+    complete = noop,
+  }) {
     history.replaceState(data, title, url);
     const { navigationStack } = this.get();
     if (navigationStack.length > 0) {
@@ -80,17 +92,14 @@ class ChironStore extends SvelteDevStore {
   }
 }
 
-const store = window.__CHIRON = new Store({
+const store = (window.__CHIRON = new Store({
   options: { path, query },
   navigationStack: path !== '/' ? [path] : [],
-  pages: [
-    'pages/index/index',
-    'pages/logs/logs',
-  ],
+  pages: ['pages/index/index', 'pages/logs/logs'],
   workflow: {
     qr_wap_pay: {
       SHOP: {
-        'SELL_CARD': 'pages/index/index',
+        SELL_CARD: 'pages/index/index',
       },
     },
   },
@@ -100,7 +109,7 @@ const store = window.__CHIRON = new Store({
     navigationBarTitleText: 'WeChat',
     navigationBarTextStyle: 'black',
   },
-});
+}));
 
 console.info('store=', store);
 
@@ -110,9 +119,9 @@ if (location.pathname === '/') {
 
 store.navigateBack(20);
 
-const app = window.__CHIRON_APP = new App({
+const app = (window.__CHIRON_APP = new App({
   target: document.body,
   store,
-});
+}));
 
 export default app;

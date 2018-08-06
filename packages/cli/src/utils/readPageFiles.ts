@@ -5,7 +5,12 @@ import { readJsonSync } from './readJsonSync';
 export interface ReadPageFilesOptions {
   cwd: string;
   root: string;
-  extensions: { script: string; template: string; style: string; config: string }
+  extensions: {
+    script: string;
+    template: string;
+    style: string;
+    config: string;
+  };
 }
 
 export interface ReadPageResult {
@@ -37,7 +42,6 @@ export async function readPageFiles(
     },
   },
 ): Promise<ReadPageResult> {
-
   const script = join(cwd, root, `${path}${extensions.script}`);
   const template = join(cwd, root, `${path}${extensions.template}`);
   const style = join(cwd, root, `${path}${extensions.style}`);
