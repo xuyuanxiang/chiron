@@ -9,6 +9,7 @@
     "build": "cross-env NODE_ENV=production BABEL_ENV=production webpack"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.0.0-beta.56",
     "@wosai/chiron-web-compat": "^1.0.0-beta.0",
     "preact": "^8.3.0"
   },

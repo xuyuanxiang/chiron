@@ -10,12 +10,11 @@
     "lib"
   ],
   "scripts": {
-    "dev": "cross-env NODE_ENV=development BABEL_ENV=development webpack",
+    "dev": "cross-env NODE_ENV=development BABEL_ENV=development webpack --watch",
     "test": "cross-env NODE_ENV=test BABEL_ENV=test jest -u",
-    "build": "cross-env NODE_ENV=production BABEL_ENV=production webpack && tsc --emitDeclarationOnly"
+    "build": "cross-env NODE_ENV=production BABEL_ENV=production webpack --progress && tsc --emitDeclarationOnly"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0-beta.56",
     "preact": "^8.3.0"
   },
   "devDependencies": {
@@ -85,10 +84,7 @@
       "production": {
         "presets": [
           [
-            "@babel/preset-env",
-            {
-              "useBuiltIns": "usage"
-            }
+            "@babel/preset-env"
           ],
           [
             "@babel/preset-typescript",

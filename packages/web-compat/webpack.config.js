@@ -144,6 +144,7 @@ const config = {
     'tls',
   ].reduce((acc, name) => Object.assign({}, acc, { [name]: 'empty' }), {}),
   optimization: {
+    // minimize: false,
     minimizer: [
       new UglifyJsPlugin({
         cache: __DEV__,
