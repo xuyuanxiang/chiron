@@ -1,8 +1,8 @@
 import { CompileTarget } from './CompileTarget';
-import { AST } from '../ast/AST';
+import { Program } from '../program';
 
 export interface CompileOptions {
-  cwd: string;
-  ast: AST;
+  output: string;
+  program: Program;
   target: CompileTarget;
 }

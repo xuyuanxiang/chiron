@@ -1,16 +1,16 @@
 {
-  "name": "chiron-cli",
+  "name": "chiron-core",
   "version": "1.0.0-beta.0",
   "license": "MIT",
-  "bin": {
-    "chiron": "index.js"
-  },
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.esm.js",
+  "jsnext:main": "lib/index.esm.js",
+  "typings": "lib/index.d.ts",
   "files": [
-    "lib",
-    "index.js"
+    "lib"
   ],
   "engines": {
-    "node": ">=8"
+    "node": ">= 8.0.0"
   },
   "scripts": {
     "clean": "rimraf lib",
@@ -18,74 +18,74 @@
     "prewatch": "yarn clean",
     "test": "cross-env NODE_ENV=test BABEL_ENV=test jest -u",
     "watch": "cross-env NODE_ENV=development BABEL_ENV=development rollup -c -w",
-    "build": "cross-env NODE_ENV=production BABEL_ENV=production rollup -c"
+    "build": "cross-env NODE_ENV=production BABEL_ENV=production rollup -c && tsc --emitDeclarationOnly"
   },
   "dependencies": {
-    "chiron-core": "^1.0.0-beta.0",
-    "webpack-serve": "^2.0.2"
+    "chalk": "^2.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.56",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.56",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.56",
     "@babel/preset-env": "^7.0.0-beta.56",
     "@babel/preset-typescript": "^7.0.0-beta.56",
-    "@types/cross-spawn": "^6.0.0",
-    "@types/del": "^3.0.1",
-    "@types/inquirer": "^0.0.42",
+    "@babel/template": "^7.0.0-beta.56",
+    "@babel/types": "^7.0.0-beta.56",
     "@types/jest": "^23.3.1",
     "@types/node": "8.x",
-    "@types/node-fetch": "^2.1.2",
-    "@types/semver": "^5.5.0",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^23.4.2",
-    "chalk": "^2.4.1",
     "cross-env": "^5.2.0",
-    "cross-spawn": "^6.0.5",
-    "inquirer": "^6.0.0",
     "jest": "^23.4.2",
     "jest-spec-reporter": "^1.0.4",
-    "node-fetch": "^2.2.0",
     "rimraf": "^2.6.2",
     "rollup": "^0.63.4",
     "rollup-plugin-babel": "^4.0.0-beta.7",
     "rollup-plugin-commonjs": "^9.1.4",
     "rollup-plugin-json": "^3.0.0",
     "rollup-plugin-node-resolve": "^3.3.0",
-    "sade": "^1.4.1",
-    "semver": "^5.5.0",
     "typescript": "^3.0.1"
   },
   "babel": {
     "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "8.0.0"
-          },
-          "modules": false
-        }
-      ],
       "@babel/preset-typescript"
     ],
     "plugins": [
-      "@babel/plugin-syntax-dynamic-import"
+      "@babel/plugin-syntax-dynamic-import",
+      "@babel/plugin-proposal-class-properties"
     ],
     "env": {
-      "test": {
+      "production": {
         "presets": [
-          "@babel/preset-env"
+          [
+            "@babel/preset-env",
+            {
+              "targets": {
+                "node": "8.0.0"
+              },
+              "modules": false
+            }
+          ]
         ]
       },
-      "production": []
+      "test": {
+        "presets": [
+          [
+            "@babel/preset-env",
+            {
+              "targets": {
+                "node": "8.0.0"
+              }
+            }
+          ]
+        ]
+      }
     }
   },
   "jest": {
     "moduleFileExtensions": [
       "js",
-      "jsx",
       "ts",
-      "tsx",
       "json",
       "node"
     ],

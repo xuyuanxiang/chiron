@@ -1,6 +1,3 @@
-import { Node } from './Node';
-import { Program } from './Program';
-
 export interface AppWindow {
   navigationBarBackgroundColor?: string;
   navigationBarTextStyle?: 'black' | 'white';
@@ -31,18 +28,4 @@ export interface AppConfig {
   pages: string[];
   window?: AppWindow;
   tabBar?: AppTabBar;
-}
-
-export class App implements Node {
-  type: string = 'App';
-  start: number = 0;
-  end: number;
-  config: AppConfig;
-  program: Program;
-
-  constructor(config: AppConfig, program: Program) {
-    this.config = config;
-    this.program = program;
-    this.end = program.end;
-  }
 }
