@@ -15,7 +15,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     alias: {
-      'react': 'preact-compat',
+      react: 'preact-compat',
       'react-dom': 'preact-compat',
     },
   },
@@ -28,9 +28,9 @@ module.exports = {
   },
   externals: prod
     ? {
-      preact: 'preact',
-      '@wosai/chiron-web-compat': '__CHIRON',
-    }
+        preact: 'preact',
+        '@wosai/chiron-web-compat': '__CHIRON',
+      }
     : {},
   module: {
     strictExportPresence: true,

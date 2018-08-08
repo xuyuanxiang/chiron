@@ -15,5 +15,4 @@ export class CompileError extends Error {
     this.code = code;
     this.stack = stack;
   }
-
 }

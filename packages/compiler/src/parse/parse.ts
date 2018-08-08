@@ -8,10 +8,12 @@ import { Program, SourceType } from '../ast/Program';
 import { AppJsonNotFound } from '../error/AppJsonNotFound';
 import { AppJsNotFound } from '../error/AppJsNotFound';
 
-export async function parse({parser, cwd = process.cwd(), encoding = 'utf8'}: ParseOptions = {
-  cwd: process.cwd(),
-  encoding: 'utf8'
-}): Promise<AST> {
+export async function parse(
+  { parser, cwd = process.cwd(), encoding = 'utf8' }: ParseOptions = {
+    cwd: process.cwd(),
+    encoding: 'utf8',
+  },
+): Promise<AST> {
   let appConfig: AppConfig | null;
   try {
     appConfig = readJsonSync(resolve(cwd, './app.json'), encoding);
@@ -29,15 +31,14 @@ export async function parse({parser, cwd = process.cwd(), encoding = 'utf8'}: Pa
     throw new AppJsNotFound(e);
   }
 
-
   if (!parser) {
-    const {SimpleParser} = await import('./SimpleParser');
+    const { SimpleParser } = await import('./SimpleParser');
     parser = new SimpleParser();
   }
 
   return {
     app: new App(appConfig, new Program(SourceType.JS, appJs)),
     pages: null,
-    components: null
+    components: null,
   };
 }

@@ -31,10 +31,7 @@ export default {
     json(),
     babel({
       include: 'src/**',
-      exclude: [
-        'node_modules/**',
-        'src/**/*.spec.ts',
-      ],
+      exclude: ['node_modules/**', 'src/**/*.spec.ts'],
     }),
     resolve(),
     commonjs({
