@@ -1,15 +1,14 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
+import { readJsonSync, AppJsonNotFound, AppJsNotFound } from 'chiron-core';
 import { ParseOptions } from './ParseOptions';
 import { App, AppConfig } from '../ast/App';
-import { readJsonSync } from '../util/readJsonSync';
 import { AST } from '../ast/AST';
 import { Program, SourceType } from '../ast/Program';
-import { AppJsonNotFound } from '../error/AppJsonNotFound';
-import { AppJsNotFound } from '../error/AppJsNotFound';
+import { JsParser } from './JsParser';
 
 export async function parse(
-  { parser, cwd = process.cwd(), encoding = 'utf8' }: ParseOptions = {
+  { cwd = process.cwd(), encoding = 'utf8', parsers }: ParseOptions = {
     cwd: process.cwd(),
     encoding: 'utf8',
   },
@@ -31,14 +30,11 @@ export async function parse(
     throw new AppJsNotFound(e);
   }
 
-  if (!parser) {
-    const { SimpleParser } = await import('./SimpleParser');
-    parser = new SimpleParser();
+  if (!parsers) {
+    parsers = [new JsParser()];
   }
 
   return {
-    app: new App(appConfig, new Program(SourceType.JS, appJs)),
-    pages: null,
-    components: null,
+    app: new App(appConfig, new Program(SourceType.JS, appJs, { type: 'JS' })),
   };
 }

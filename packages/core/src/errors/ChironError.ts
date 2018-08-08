@@ -1,9 +1,9 @@
-import { ErrorCode } from './ErrorCode';
+import { ChironErrorCode } from './ChironErrorCode';
 
-export class CompileError extends Error {
-  readonly code: ErrorCode;
+export class ChironError extends Error {
+  readonly code: ChironErrorCode;
 
-  constructor(code: ErrorCode, cause: Error | unknown) {
+  constructor(code: ChironErrorCode, cause: Error | unknown) {
     let message, stack;
     if (typeof cause === 'string') {
       message = `${code}-${cause}`;

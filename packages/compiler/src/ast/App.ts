@@ -34,15 +34,12 @@ export interface AppConfig {
 }
 
 export class App implements Node {
-  type: string = 'App';
-  start: number = 0;
-  end: number;
-  config: AppConfig;
-  program: Program;
+  readonly type: string = 'App';
+  readonly config: AppConfig;
+  readonly program: Program;
 
   constructor(config: AppConfig, program: Program) {
     this.config = config;
     this.program = program;
-    this.end = program.end;
   }
 }

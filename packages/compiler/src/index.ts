@@ -1,4 +1,4 @@
 export { parse } from './parse/parse';
-export { SimpleParser } from './parse/SimpleParser';
+export { JsParser } from './parse/JsParser';
 export { compile } from './compile/compile';
 export { DomTarget } from './compile/DomTarget';

@@ -2,7 +2,7 @@ import { lookup } from 'dns';
 import { join } from 'path';
 import { readFileSync, writeFileSync, statSync, existsSync } from 'fs';
 import { sync as spawn } from 'cross-spawn';
-import { del } from '../utils/del';
+import { del } from '../../../core/src/utils/del';
 
 export function init(dir: string = '.') {
   lookup('github.com', err => {

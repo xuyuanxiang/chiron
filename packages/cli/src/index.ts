@@ -6,7 +6,7 @@
 
 import { EOL } from 'os';
 import sade from 'sade';
-import './utils/log-patch';
+import '../../core/src/utils/logPatch';
 import { version } from '../package.json';
 
 global.__LOG_LEVEL__ = 'info';

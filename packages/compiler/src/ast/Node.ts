@@ -1,7 +1,5 @@
 export interface Node {
-  start: number;
-  end: number;
-  type: string;
+  readonly type: string;
 
-  [prop: string]: any;
+  readonly [prop: string]: any;
 }
