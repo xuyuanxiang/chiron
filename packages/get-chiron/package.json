@@ -5,72 +5,7 @@
   "bin": {
     "get-chiron": "index.js"
   },
-  "files": [
-    "lib",
-    "index.js"
-  ],
   "engines": {
-    "node": ">= 8.0.0"
-  },
-  "scripts": {
-    "test": "cross-env NODE_ENV=test BABEL_ENV=test jest -u",
-    "watch": "cross-env NODE_ENV=development BABEL_ENV=development rollup -c -w",
-    "build": "cross-env NODE_ENV=production BABEL_ENV=production rollup -c"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.0.0-beta.55",
-    "@babel/preset-env": "^7.0.0-beta.55",
-    "@babel/preset-typescript": "^7.0.0-beta.55",
-    "@types/cross-spawn": "^6.0.0",
-    "@types/jest": "^23.3.1",
-    "@types/node": "8.x",
-    "babel-core": "^7.0.0-0",
-    "babel-jest": "^23.4.2",
-    "cross-env": "^5.2.0",
-    "cross-spawn": "^6.0.5",
-    "jest": "^23.4.2",
-    "jest-spec-reporter": "^1.0.4",
-    "rollup": "^0.63.4",
-    "rollup-plugin-babel": "^4.0.0-beta.7",
-    "rollup-plugin-commonjs": "^9.1.4",
-    "rollup-plugin-json": "^3.0.0",
-    "rollup-plugin-node-resolve": "^3.3.0",
-    "rollup-plugin-terser": "^1.0.1",
-    "typescript": "^3.0.1"
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "8.0.0"
-          },
-          "modules": false
-        }
-      ],
-      "@babel/preset-typescript"
-    ]
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "json",
-      "node"
-    ],
-    "testRegex": "(src/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
-    "transform": {
-      "^.+\\.tsx?$": "babel-jest"
-    },
-    "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}",
-      "!src/**/*.spec.{ts,tsx}",
-      "!src/**/*.d.ts"
-    ],
-    "reporters": [
-      "default",
-      "jest-spec-reporter"
-    ]
+    "node": ">=8"
   }
 }
