@@ -1,10 +1,10 @@
 import { Node } from './Node';
 
 export enum SourceType {
-  JS = 'JS',
-  WXSS = 'WXSS',
-  WXML = 'WXML',
-  WXS = 'WXS',
+  JS = 'js',
+  WXSS = 'wxss',
+  WXML = 'wxml',
+  WXS = 'wxs',
 }
 
 export class Program implements Node {
@@ -12,9 +12,11 @@ export class Program implements Node {
   start: number = 0;
   end: number;
   sourceType: SourceType;
+  sourceCode: string;
 
-  constructor(sourceType: SourceType, end: number) {
+  constructor(sourceType: SourceType, sourceCode: string = '') {
     this.sourceType = sourceType;
-    this.end = end;
+    this.sourceCode = sourceCode;
+    this.end = sourceCode.length;
   }
 }

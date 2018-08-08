@@ -1,3 +1,3 @@
 export interface ViewProps {
-  tagName?: string;
+  tagName: string;
 }

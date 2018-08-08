@@ -7,7 +7,7 @@ const __DEV__ = process.env.NODE_ENV === 'development';
 
 const config = {
   context: __dirname,
-  devtool: __DEV__ ? 'cheap-module-source-map' : __DEV__,
+  devtool: __DEV__ ? 'cheap-module-source-map' : 'source-map',
   mode: __DEV__ ? 'development' : 'production',
   entry: './src/index.ts',
   output: {
@@ -19,11 +19,10 @@ const config = {
       commonjs: '@wosai/chiron-web-compat',
     },
     libraryTarget: 'umd',
-    devtoolModuleFilenameTemplate: info =>
-      path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
   externals: {
-    preact: 'preact',
+    react: 'react',
+    'react-dom': 'react-dom',
   },
   resolve: {
     modules: [
@@ -148,7 +147,7 @@ const config = {
       new UglifyJsPlugin({
         cache: __DEV__,
         parallel: true,
-        sourceMap: __DEV__,
+        sourceMap: true,
         uglifyOptions: {
           compress: {
             warnings: false,

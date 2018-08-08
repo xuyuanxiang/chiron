@@ -2,7 +2,6 @@ import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
 import json from 'rollup-plugin-json';
-import { terser } from 'rollup-plugin-terser';
 
 const production = process.env.NODE_ENV === 'production';
 
@@ -34,15 +33,13 @@ export default {
       include: 'src/**',
       exclude: [
         'node_modules/**',
-        '**/__tests__/*.spec.ts',
-        '**/__mocks__/*.ts',
+        'src/**/*.spec.ts',
       ],
     }),
     resolve(),
     commonjs({
       extensions: ['.ts', '.js'],
     }),
-    production && terser(),
   ],
   experimentalCodeSplitting: true,
 };

@@ -1,3 +1,4 @@
-export { AST } from './ast/AST';
-export { parse, ParseOptions, Parser } from './parse';
-export { compile, CompileOptions, DomTarget } from './compile';
+export { parse } from './parse/parse';
+export { SimpleParser } from './parse/SimpleParser';
+export { compile } from './compile/compile';
+export { DomTarget } from './compile/DomTarget';

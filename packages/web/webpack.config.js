@@ -14,6 +14,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+    alias: {
+      'react': 'preact-compat',
+      'react-dom': 'preact-compat',
+    },
   },
   output: {
     path: path.join(__dirname, outputDir),
@@ -24,9 +28,9 @@ module.exports = {
   },
   externals: prod
     ? {
-        preact: 'preact',
-        '@wosai/chiron-web-compat': '__CHIRON',
-      }
+      preact: 'preact',
+      '@wosai/chiron-web-compat': '__CHIRON',
+    }
     : {},
   module: {
     strictExportPresence: true,
@@ -61,12 +65,7 @@ module.exports = {
             test: /\.tsx?$/,
             exclude: /node_modules/,
             include: path.join(__dirname, 'src'),
-            use: {
-              loader: 'babel-loader',
-              options: {
-                cacheDirectory: !prod,
-              },
-            },
+            use: 'babel-loader',
           },
         ],
       },
@@ -103,7 +102,7 @@ module.exports = {
       new UglifyJsPlugin({
         cache: !prod,
         parallel: true,
-        sourceMap: !prod,
+        sourceMap: true,
         uglifyOptions: {
           compress: {
             warnings: false,
@@ -121,5 +120,5 @@ module.exports = {
       }),
     ],
   },
-  devtool: prod ? false : 'source-map',
+  devtool: prod ? 'source-map' : 'cheap-module-source-map',
 };

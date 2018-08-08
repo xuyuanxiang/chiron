@@ -1,7 +1,7 @@
 import { Node } from './Node';
 
 export interface AST {
-  app: Node;
-  pages: Node;
-  components: Node;
+  app: Node | null;
+  pages: Node | null;
+  components: Node | null;
 }
