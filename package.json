@@ -1,7 +1,6 @@
 {
-  "name": "@wosai/chiron",
+  "name": "chiron",
   "version": "1.0.0",
-  "main": "index.js",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -10,7 +9,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,less,scss,md}\""
   },
   "engines": {
-    "node": ">= 8.0.0"
+    "node": ">= 8"
   },
   "workspaces": [
     "packages/*"
