@@ -3,8 +3,8 @@ import { Page } from './Page';
 import { Package } from './Package';
 import { Component } from './Component';
 
-export interface AST {
-  app: App;
+export interface Program {
+  app?: App;
   pages?: Page[];
   subpackages?: Package[];
   components?: Component[];

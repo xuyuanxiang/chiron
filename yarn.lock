@@ -8,7 +8,7 @@
   dependencies:
     "@babel/highlight" "7.0.0-beta.56"
 
-"@babel/core@^7.0.0-beta.55", "@babel/core@^7.0.0-beta.56":
+"@babel/core@^7.0.0-beta.56":
   version "7.0.0-beta.56"
   resolved "http://registry.npm.taobao.org/@babel/core/download/@babel/core-7.0.0-beta.56.tgz#cc03ffbb62564fef58fd1cefcbb3e32011c21df9"
   dependencies:
@@ -198,7 +198,7 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-"@babel/parser@7.0.0-beta.56":
+"@babel/parser@7.0.0-beta.56", "@babel/parser@^7.0.0-beta.56":
   version "7.0.0-beta.56"
   resolved "http://registry.npm.taobao.org/@babel/parser/download/@babel/parser-7.0.0-beta.56.tgz#8638aa02e0130cd10b2ba4128e2b804112073ed3"
 
@@ -255,7 +255,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.56"
 
-"@babel/plugin-syntax-dynamic-import@^7.0.0-beta.55", "@babel/plugin-syntax-dynamic-import@^7.0.0-beta.56":
+"@babel/plugin-syntax-dynamic-import@^7.0.0-beta.56":
   version "7.0.0-beta.56"
   resolved "http://registry.npm.taobao.org/@babel/plugin-syntax-dynamic-import/download/@babel/plugin-syntax-dynamic-import-7.0.0-beta.56.tgz#598a311ffc8821b4f4683c4e52b62b896e2d943c"
   dependencies:
@@ -515,7 +515,7 @@
     core-js "^2.5.7"
     regenerator-runtime "^0.11.1"
 
-"@babel/preset-env@^7.0.0-beta.55", "@babel/preset-env@^7.0.0-beta.56":
+"@babel/preset-env@^7.0.0-beta.56":
   version "7.0.0-beta.56"
   resolved "http://registry.npm.taobao.org/@babel/preset-env/download/@babel/preset-env-7.0.0-beta.56.tgz#1d00bb1768c422b363be214c12f3b99dc5e4cc0c"
   dependencies:
@@ -570,14 +570,14 @@
     "@babel/plugin-transform-react-jsx-self" "7.0.0-beta.56"
     "@babel/plugin-transform-react-jsx-source" "7.0.0-beta.56"
 
-"@babel/preset-typescript@^7.0.0-beta.55", "@babel/preset-typescript@^7.0.0-beta.56":
+"@babel/preset-typescript@^7.0.0-beta.56":
   version "7.0.0-beta.56"
   resolved "http://registry.npm.taobao.org/@babel/preset-typescript/download/@babel/preset-typescript-7.0.0-beta.56.tgz#eff0414072f018014f857c072a07e524088568b0"
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.56"
     "@babel/plugin-transform-typescript" "7.0.0-beta.56"
 
-"@babel/template@7.0.0-beta.56", "@babel/template@^7.0.0-beta.55":
+"@babel/template@7.0.0-beta.56", "@babel/template@^7.0.0-beta.56":
   version "7.0.0-beta.56"
   resolved "http://registry.npm.taobao.org/@babel/template/download/@babel/template-7.0.0-beta.56.tgz#a428197e0c9db142f8581cbfdcfa9289b0dd7fd7"
   dependencies:
@@ -586,7 +586,7 @@
     "@babel/types" "7.0.0-beta.56"
     lodash "^4.17.10"
 
-"@babel/traverse@7.0.0-beta.56":
+"@babel/traverse@7.0.0-beta.56", "@babel/traverse@^7.0.0-beta.56":
   version "7.0.0-beta.56"
   resolved "http://registry.npm.taobao.org/@babel/traverse/download/@babel/traverse-7.0.0-beta.56.tgz#62fdfe69328cfaad414ef01844f5ab40e32f4ad0"
   dependencies:
@@ -600,7 +600,7 @@
     globals "^11.1.0"
     lodash "^4.17.10"
 
-"@babel/types@7.0.0-beta.56", "@babel/types@^7.0.0-beta.55":
+"@babel/types@7.0.0-beta.56", "@babel/types@^7.0.0-beta.56":
   version "7.0.0-beta.56"
   resolved "http://registry.npm.taobao.org/@babel/types/download/@babel/types-7.0.0-beta.56.tgz#df456947a82510ec30361971e566110d89489056"
   dependencies:

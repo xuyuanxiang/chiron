@@ -1,4 +1,4 @@
-export interface AppHooksOptions {
+export interface AppHookOptions {
   path: string;
   query: { [key: string]: any };
   scene?: number;
@@ -10,20 +10,20 @@ export interface AppHooksOptions {
   isEntryPage?: boolean;
 }
 
-export interface AppArguments {
+export interface AppHook {
   globalData: any;
 
-  onLaunch(options: AppHooksOptions): void;
+  onLaunch(options: AppHookOptions): void;
 
-  onShow(options: AppHooksOptions): void;
+  onShow(options: AppHookOptions): void;
 
   onHide(): void;
 
   onError(): void;
 
-  onPageNotFound(options: AppHooksOptions): void;
+  onPageNotFound(options: AppHookOptions): void;
 
   [prop: string]: any;
 }
 
-export function App(args: AppArguments) {}
+export function App(hook: AppHook) {}
