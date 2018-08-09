@@ -1,10 +1,13 @@
 import { access, stat } from 'fs';
 
 export interface ErrorConstructor {
-  new(...args: any[]): Error;
+  new (...args: any[]): Error;
 }
 
-export async function assertFileExists(file: string, Error: ErrorConstructor): Promise<void> {
+export async function assertFileExists(
+  file: string,
+  Error: ErrorConstructor,
+): Promise<void> {
   return new Promise<void>((resolve, reject) => {
     access(file, err => {
       if (err) {

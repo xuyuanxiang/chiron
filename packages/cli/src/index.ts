@@ -27,7 +27,12 @@ program
     if (debug === true) {
       global.__LOG_LEVEL__ = 'debug';
     }
-    console.debug('command init, debug=', debug, 'worker-threads=', workerThreads);
+    console.debug(
+      'command init, debug=',
+      debug,
+      'worker-threads=',
+      workerThreads,
+    );
     const c = zone.create('chiron', { workers: workerThreads });
     // if (typeof project !== 'string' || !project) {
     //   project = '.';

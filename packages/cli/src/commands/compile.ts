@@ -1,3 +1,1 @@
-export async function compile(): Promise<void> {
-
-}
+export async function compile(): Promise<void> {}

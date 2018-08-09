@@ -5,12 +5,11 @@ import {
   AppJsonHasCorrupted,
   assertIsFile,
   readJson,
-  readFile
+  readFile,
 } from 'chiron-core';
 import { ParseOptions } from './ParseOptions';
 import { App, ContentType, File, Program } from '../program';
 import { AppConfig } from '../shared/AppConfig';
-
 
 export async function parse(
   { cwd = process.cwd(), encoding = 'utf8' }: ParseOptions = {
@@ -18,10 +17,12 @@ export async function parse(
     encoding: 'utf8',
   },
 ): Promise<Program> {
-
   const appConfigFile = resolve(cwd, './app.json');
   const appJsFile = resolve(cwd, './app.js');
-  await Promise.all([assertIsFile(appConfigFile, AppJsonNotFound), assertIsFile(appJsFile, AppJsNotFound)]);
+  await Promise.all([
+    assertIsFile(appConfigFile, AppJsonNotFound),
+    assertIsFile(appJsFile, AppJsNotFound),
+  ]);
 
   let appConfig: AppConfig;
   try {
@@ -40,11 +41,7 @@ export async function parse(
         await readFile(appConfigFile, encoding),
         ContentType.CONFIG,
       ),
-      new File(
-        appJsFile,
-        await readFile(appJsFile, encoding),
-        ContentType.JS
-      ),
+      new File(appJsFile, await readFile(appJsFile, encoding), ContentType.JS),
     ),
   };
 }
