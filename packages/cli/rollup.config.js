@@ -23,6 +23,7 @@ export default {
     'util',
     'dns',
     'assert',
+    'crypto',
     'webpack-serve',
     'napajs',
   ],

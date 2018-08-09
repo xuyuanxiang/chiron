@@ -31,7 +31,7 @@ export async function parse(
     throw new AppJsonHasCorrupted(e);
   }
 
-  console.info('app.json:', appConfig);
+  console.info('app.json:', JSON.stringify(appConfig));
   // TODO detect pages
 
   return {
