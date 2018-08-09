@@ -23,7 +23,6 @@
   "dependencies": {
     "chiron-compiler": "^1.0.0-beta.0",
     "chiron-core": "^1.0.0-beta.0",
-    "napajs": "^0.2.3",
     "webpack-serve": "^2.0.2"
   },
   "devDependencies": {

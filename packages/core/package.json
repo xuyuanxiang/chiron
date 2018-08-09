@@ -2,7 +2,7 @@
   "name": "chiron-core",
   "version": "1.0.0-beta.0",
   "license": "MIT",
-  "main": "lib/index.cjs.js",
+  "main": "lib/index.js",
   "module": "lib/index.esm.js",
   "jsnext:main": "lib/index.esm.js",
   "typings": "lib/index.d.ts",
@@ -15,7 +15,6 @@
   "scripts": {
     "clean": "rimraf lib",
     "prebuild": "yarn clean",
-    "prewatch": "yarn clean",
     "test": "cross-env NODE_ENV=test BABEL_ENV=test jest -u",
     "watch": "cross-env NODE_ENV=development tsc -w",
     "build": "cross-env NODE_ENV=production BABEL_ENV=production rollup -c && tsc --emitDeclarationOnly"

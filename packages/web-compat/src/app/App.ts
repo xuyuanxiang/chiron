@@ -1,4 +1,4 @@
-import { ReactNode, StatelessComponent, Children } from 'react';
+import { PureComponent } from 'react';
 import { AppProps } from './app-props';
 
 export const App: StatelessComponent<AppProps> = ({

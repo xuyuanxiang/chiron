@@ -69,7 +69,8 @@
   "include": ["src", "types"],
   "exclude": [
     "node_modules",
-    "src/**/__tests__/*.spec.ts",
-    "src/**/__mocks__/*.ts"
+    "**/*.spec.ts",
+    "**/__mocks__/**",
+    "**/__tests__/**"
   ]
 }

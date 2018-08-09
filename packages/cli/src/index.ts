@@ -4,7 +4,6 @@
 // const pkg = require('../package.json');
 // const semver = require('semver');
 import { EOL, cpus } from 'os';
-import { zone } from 'napajs';
 import sade from 'sade';
 import { logPatch } from 'chiron-core';
 import { version } from '../package.json';
@@ -33,7 +32,6 @@ program
       'worker-threads=',
       workerThreads,
     );
-    const c = zone.create('chiron', { workers: workerThreads });
     // if (typeof project !== 'string' || !project) {
     //   project = '.';
     // }

@@ -25,7 +25,6 @@ export default {
     'assert',
     'crypto',
     'webpack-serve',
-    'napajs',
   ],
   plugins: [
     json(),

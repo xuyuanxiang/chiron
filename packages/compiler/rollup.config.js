@@ -14,7 +14,7 @@ export default [
   {
     output: {
       dir: 'lib',
-      file: 'index.cjs.js',
+      file: 'index.js',
       format: 'cjs',
     },
   },
