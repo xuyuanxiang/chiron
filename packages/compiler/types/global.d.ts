@@ -24,6 +24,27 @@ declare module 'posthtml' {
   export default function(plugins?: PostHTMLPlugin[]): PostHTML;
 }
 
+declare module '@babel/code-frame' {
+  export interface Location {
+    start?: { line: number; column: number };
+    end?: { line: number; column: number };
+  }
+
+  export interface CodeFrameOptions {
+    highlightCode?: boolean;
+    linesAbove?: number;
+    linesBelow?: number;
+    forceColor?: boolean;
+    message: string;
+  }
+
+  export function codeFrameColumns(
+    rawLines: string,
+    location: Location,
+    options?: CodeFrameOptions,
+  ): string;
+}
+
 declare namespace NodeJS {
   interface Global {
     __LOG_LEVEL__: keyof Console;

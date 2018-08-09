@@ -3,10 +3,8 @@ import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
 import json from 'rollup-plugin-json';
 
-const production = process.env.NODE_ENV === 'production';
-
 export default {
-  input: 'src/main.tsx',
+  input: 'src/index.ts',
   output: {
     dir: 'lib',
     format: 'cjs',
@@ -24,8 +22,9 @@ export default {
     'child_process',
     'util',
     'dns',
-    'webpack-serve',
     'assert',
+    'webpack-serve',
+    'napajs',
   ],
   plugins: [
     json(),

@@ -25,5 +25,3 @@ declare namespace NodeJS {
     __LOG_LEVEL__: keyof Console;
   }
 }
-
-declare var __LOG_LEVEL__: keyof Console;

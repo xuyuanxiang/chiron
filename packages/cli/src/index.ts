@@ -3,34 +3,39 @@
 // const fetch = require('node-fetch');
 // const pkg = require('../package.json');
 // const semver = require('semver');
-
-import { EOL } from 'os';
+import { EOL, cpus } from 'os';
+import { zone } from 'napajs';
 import sade from 'sade';
-import '../../core/src/utils/logPatch';
+import { logPatch } from 'chiron-core';
 import { version } from '../package.json';
 
 global.__LOG_LEVEL__ = 'info';
+logPatch();
+
+const CPU_NUM = cpus().length;
 
 const program = sade('chiron')
   .version(version)
-  .option('-d, --debug', 'enable debug info');
+  .option('--worker-threads', 'specific number of worker threads', `${CPU_NUM}`)
+  .option('-d, --debug', 'enable debug info.');
 
 program
   .command('init [project]')
   .describe('Initialize chiron project')
   .example('init my-awesome-project')
-  .action(async (project, { debug }) => {
+  .action(async (project, { debug, ['worker-threads']: workerThreads }) => {
     if (debug === true) {
       global.__LOG_LEVEL__ = 'debug';
     }
-    console.debug('command init, debug=', debug);
-    if (typeof project !== 'string' || !project) {
-      project = '.';
-    }
-    // const result = sync('node', [require.resolve('./commands/init'), name],
-    //   { stdio: 'inherit' });
-    const { init } = await import('./commands/init');
-    await init(project);
+    console.debug('command init, debug=', debug, 'worker-threads=', workerThreads);
+    const c = zone.create('chiron', { workers: workerThreads });
+    // if (typeof project !== 'string' || !project) {
+    //   project = '.';
+    // }
+    // // const result = sync('node', [require.resolve('./commands/init'), name],
+    // //   { stdio: 'inherit' });
+    // const { init } = await import('./commands/init');
+    // await init(project);
   });
 
 program

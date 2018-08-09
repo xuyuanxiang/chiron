@@ -1,4 +1,4 @@
 export * from './assert';
-export * from './del';
 export * from './logPatch';
-export * from './readJsonSync';
+export * from './readFile';
+export * from './readJson';

@@ -1,27 +1,36 @@
-import { accessSync, statSync } from 'fs';
-import { AppJsonNotFound } from '../errors';
+import { access, stat } from 'fs';
 
 export interface ErrorConstructor {
-  new (...args: any[]): Error;
+  new(...args: any[]): Error;
 }
 
-assertFileExists('', AppJsonNotFound);
-
-export function assertFileExists(file: string, Error: ErrorConstructor) {
-  try {
-    accessSync(file);
-  } catch (cause) {
-    throw new Error(cause);
-  }
+export async function assertFileExists(file: string, Error: ErrorConstructor): Promise<void> {
+  return new Promise<void>((resolve, reject) => {
+    access(file, err => {
+      if (err) {
+        reject(new Error(err));
+      } else {
+        resolve();
+      }
+    });
+  });
 }
 
-export function assertIsFile(
+export async function assertIsFile(
   file: string,
   Error: ErrorConstructor,
-): void | never {
-  assertFileExists(file, Error);
+): Promise<void> {
+  await assertFileExists(file, Error);
 
-  if (!statSync(file).isFile()) {
-    throw new Error(`${file} not exists.`);
-  }
+  return new Promise<void>((resolve, reject) => {
+    stat(file, (err, stats) => {
+      if (err) {
+        reject(new Error(err));
+      } else if (!stats.isFile()) {
+        reject(new Error(`${file} not exists.`));
+      } else {
+        resolve();
+      }
+    });
+  });
 }

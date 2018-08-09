@@ -25,7 +25,7 @@ export interface AppTabBar {
 }
 
 export interface AppConfig {
-  pages: string[];
+  pages?: string[];
   window?: AppWindow;
   tabBar?: AppTabBar;
 }

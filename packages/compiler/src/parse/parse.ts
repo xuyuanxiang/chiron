@@ -1,15 +1,16 @@
 import { resolve } from 'path';
-import { readFileSync } from 'fs';
 import {
   AppJsNotFound,
   AppJsonNotFound,
   AppJsonHasCorrupted,
   assertIsFile,
-  readJsonSync,
+  readJson,
+  readFile
 } from 'chiron-core';
 import { ParseOptions } from './ParseOptions';
 import { App, ContentType, File, Program } from '../program';
 import { AppConfig } from '../shared/AppConfig';
+
 
 export async function parse(
   { cwd = process.cwd(), encoding = 'utf8' }: ParseOptions = {
@@ -17,33 +18,33 @@ export async function parse(
     encoding: 'utf8',
   },
 ): Promise<Program> {
+
   const appConfigFile = resolve(cwd, './app.json');
-  assertIsFile(appConfigFile, AppJsonNotFound);
   const appJsFile = resolve(cwd, './app.js');
-  assertIsFile(appConfigFile, AppJsNotFound);
+  await Promise.all([assertIsFile(appConfigFile, AppJsonNotFound), assertIsFile(appJsFile, AppJsNotFound)]);
 
-  let appConfig: AppConfig | null;
-
+  let appConfig: AppConfig;
   try {
-    appConfig = readJsonSync(appConfigFile, encoding);
+    appConfig = await readJson(appConfigFile, encoding);
   } catch (e) {
     throw new AppJsonHasCorrupted(e);
   }
 
-  if (appConfig == null) {
-    throw new AppJsonHasCorrupted();
-  }
-
+  console.info('app.json:', appConfig);
   // TODO detect pages
 
   return {
     app: new App(
       new File(
         appConfigFile,
-        readFileSync(appConfigFile, encoding),
+        await readFile(appConfigFile, encoding),
         ContentType.CONFIG,
       ),
-      new File(appJsFile, readFileSync(appJsFile, encoding), ContentType.JS),
+      new File(
+        appJsFile,
+        await readFile(appJsFile, encoding),
+        ContentType.JS
+      ),
     ),
   };
 }
