@@ -1,6 +1,4 @@
-export function noop() {
-
-}
+export function noop() {}
 
 export function isFunction(f) {
   return typeof f === 'function';
@@ -15,13 +13,13 @@ export function isString(s) {
 }
 
 export function compose(f = noop, g = noop) {
-  return function (...args) {
+  return function(...args) {
     f(g(...args));
   };
 }
 
 export function guard(actual = noop) {
-  return function (
+  return function(
     { success = noop, fail = noop, complete = noop, ...args } = {
       success: noop,
       fail: noop,
@@ -51,11 +49,19 @@ export function asyncImport(src, done) {
 }
 
 export function bind(target, event, handler) {
-  if (target && typeof isFunction(target.addEventListener) &&
-    isFunction(handler) && isString(event)) {
+  if (
+    target &&
+    typeof isFunction(target.addEventListener) &&
+    isFunction(handler) &&
+    isString(event)
+  ) {
     target.addEventListener(event, handler, false);
   }
 }
 
-export const bindWindow = isDefined(window) ? compose(bind,
-  (event, handler) => [window, event, handler]) : noop;
+export const bindWindow = isDefined(window)
+  ? compose(
+      bind,
+      (event, handler) => [window, event, handler],
+    )
+  : noop;

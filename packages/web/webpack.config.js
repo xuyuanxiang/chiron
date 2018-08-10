@@ -32,18 +32,19 @@ module.exports = {
     devtoolModuleFilenameTemplate: info =>
       path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
-  externals: prod
-    ? { preact: 'preact' }
-    : {},
+  externals: prod ? { preact: 'preact' } : {},
   module: {
     strictExportPresence: true,
-    rules: (prod ? [] : [
-      {
-        enforce: 'pre',
-        test: /\.jsx?$/,
-        loader: 'source-map-loader',
-      },
-    ]).concat([
+    rules: (prod
+      ? []
+      : [
+          {
+            enforce: 'pre',
+            test: /\.jsx?$/,
+            loader: 'source-map-loader',
+          },
+        ]
+    ).concat([
       {
         oneOf: [
           {

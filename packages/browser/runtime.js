@@ -57,16 +57,16 @@ if (typeof window !== 'undefined') {
     return currentPages;
   };
 
-  bindWindow('load', function () {
+  bindWindow('load', function() {
     apply(app, 'onLaunch', [options]);
   });
-  bindWindow('error', function () {
+  bindWindow('error', function() {
     apply(app, 'onError', []);
   });
-  bindWindow('pageshow', function () {
+  bindWindow('pageshow', function() {
     apply(app, 'onShow', [options]);
   });
-  bindWindow('pagehide', function () {
+  bindWindow('pagehide', function() {
     apply(app, 'onHide', []);
   });
 }

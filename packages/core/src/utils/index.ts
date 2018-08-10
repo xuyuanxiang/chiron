@@ -1,5 +1,5 @@
 export * from './assert';
-export * from './asyncImport'
+export * from './asyncImport';
 export * from './bind';
 export * from './compose';
 export * from './guard';
