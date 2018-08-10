@@ -1,25 +1,28 @@
+import { bindWindow, asyncImport, apply } from './utils';
+
 if (typeof window !== 'undefined') {
   const { parse } = require('querystring');
   const { search, pathname } = location;
   const app = {},
     options = { path: pathname, query: parse(search.replace('?', '')) };
   const currentPages = [];
-  const appConfig = require('./app/app.json');
+  const appConfig = require('../web/app/app.json');
 
   let index = appConfig && appConfig.pages ? appConfig.pages[0] : null;
 
   if (index) {
-    load(`/${index}.js`, () => {
+    asyncImport(`/${index}.js`, () => {
       if (location.pathname !== `/${index}`) {
         history.pushState({}, appConfig.window.navigationBarTitleText, index);
       }
     });
   }
 
+  const vendor = process.env.CHIRON_VENDOR || 'wx';
   if (__DEV__) {
-    window.wx = require('./wx');
+    window[vendor] = require('./wx-compat');
   } else {
-    window.wx = {};
+    window[vendor] = {};
   }
 
   window.getApp = () => {
@@ -48,41 +51,22 @@ if (typeof window !== 'undefined') {
       }
     }
     currentPages.push(page);
-    console.log('loaded pages:', currentPages);
   };
 
   window.getCurrentPages = () => {
     return currentPages;
   };
 
-  bind('load', function() {
-    apply('onLaunch', [options]);
+  bindWindow('load', function () {
+    apply(app, 'onLaunch', [options]);
   });
-  bind('error', function() {
-    apply('onError', []);
+  bindWindow('error', function () {
+    apply(app, 'onError', []);
   });
-  bind('pageshow', function() {
-    apply('onShow', [options]);
+  bindWindow('pageshow', function () {
+    apply(app, 'onShow', [options]);
   });
-  bind('pagehide', function() {
-    apply('onHide', []);
+  bindWindow('pagehide', function () {
+    apply(app, 'onHide', []);
   });
-
-  function bind(event, handler) {
-    window.addEventListener(event, handler, false);
-  }
-
-  function apply(method, args) {
-    if (app && typeof app[method] === 'function') {
-      app[method].apply(app, args);
-    }
-  }
-
-  function load(src, done) {
-    const script = document.createElement('script');
-    script.src = src;
-    script.async = true;
-    script.onload = done;
-    document.querySelector('head').appendChild(script);
-  }
 }

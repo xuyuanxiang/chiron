@@ -21,7 +21,13 @@ export default [
 ].map(it =>
   Object.assign(it, {
     input: 'src/index.ts',
-    external: ['path', 'assert', 'fs', 'events', 'util', 'os'],
+    external: [
+      'path',
+      'assert',
+      'fs',
+      'events',
+      'util',
+    ],
     plugins: [
       json(),
       babel({

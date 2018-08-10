@@ -8,6 +8,7 @@
     "build": "cross-env NODE_ENV=production BABEL_ENV=production webpack --progress"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0-rc.1",
     "@babel/preset-env": "^7.0.0-beta.56",
     "babel-loader": "^8.0.0-beta.4",
     "clean-webpack-plugin": "^0.1.19",
@@ -22,11 +23,23 @@
   },
   "babel": {
     "presets": [
-      "@babel/preset-env"
+      [
+        "@babel/preset-env",
+        {
+          "useBuiltIns": "entry",
+          "modules": false
+        }
+      ]
+    ],
+    "plugins": [
+      "@babel/plugin-syntax-dynamic-import"
     ]
   },
   "browserslist": [
     "android >= 4.2",
     "ios >= 9.3"
-  ]
+  ],
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0-rc.1"
+  }
 }

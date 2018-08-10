@@ -1,16 +1,21 @@
 const path = require('path');
+const webpack = require('webpack');
+const history = require('connect-history-api-fallback');
+const convert = require('koa-connect');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const mode = process.env.NODE_ENV || 'development';
-const prod = mode === 'production';
+const mode = process.env.NODE_ENV;
+const prod = mode !== 'development';
 
 const outputDir = 'public';
 
 module.exports = {
+  mode,
   entry: {
-    app: ['./src/main.tsx'],
+    main: ['./src/main.tsx'],
+    polyfill: ['@babel/polyfill'],
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
@@ -21,25 +26,24 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, outputDir),
+    publicPath: '/',
     filename: '[name].js',
     chunkFilename: '[name].[id].js',
     devtoolModuleFilenameTemplate: info =>
       path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
   externals: prod
-    ? {
-        preact: 'preact',
-        '@wosai/chiron-web-compat': '__CHIRON',
-      }
+    ? { preact: 'preact' }
     : {},
   module: {
     strictExportPresence: true,
-    rules: [
+    rules: (prod ? [] : [
       {
         enforce: 'pre',
         test: /\.jsx?$/,
         loader: 'source-map-loader',
       },
+    ]).concat([
       {
         oneOf: [
           {
@@ -69,17 +73,24 @@ module.exports = {
           },
         ],
       },
-    ],
+    ]),
   },
-  mode,
   plugins: [
+    new webpack.DefinePlugin({ __DEV__: JSON.stringify(!prod) }),
+    new webpack.WatchIgnorePlugin([
+      path.join(__dirname, 'scripts'),
+      path.join(__dirname, 'public'),
+      /node_modules/,
+    ]),
     new CleanWebpackPlugin(path.join(__dirname, outputDir), {
       verbose: false,
       allowExternal: true,
       root: __dirname,
     }),
     new HtmlWebpackPlugin({
-      inject: true,
+      inject: 'head',
+      chunks: ['main'],
+      hash: !prod,
       template: path.join(__dirname, 'src', 'index.ejs'),
       favicon: path.join(__dirname, 'src', 'favicon.ico'),
       minify: {
@@ -97,7 +108,6 @@ module.exports = {
     }),
   ],
   optimization: {
-    minimize: false,
     minimizer: [
       new UglifyJsPlugin({
         cache: !prod,
@@ -120,5 +130,14 @@ module.exports = {
       }),
     ],
   },
-  devtool: prod ? 'source-map' : 'cheap-module-source-map',
+  devtool: prod ? false : 'cheap-module-source-map',
+  serve: {
+    add: (app, middleware, options) => {
+      const historyOptions = {
+        // ... see: https://github.com/bripkens/connect-history-api-fallback#options
+      };
+
+      app.use(convert(history(historyOptions)));
+    },
+  },
 };

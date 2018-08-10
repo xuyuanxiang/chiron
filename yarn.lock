@@ -134,6 +134,10 @@
   version "7.0.0-beta.56"
   resolved "http://registry.npm.taobao.org/@babel/helper-plugin-utils/download/@babel/helper-plugin-utils-7.0.0-beta.56.tgz#e5f63cae8b3b716825d64e69ad8b59d71cd2080c"
 
+"@babel/helper-plugin-utils@7.0.0-rc.1":
+  version "7.0.0-rc.1"
+  resolved "http://registry.npm.taobao.org/@babel/helper-plugin-utils/download/@babel/helper-plugin-utils-7.0.0-rc.1.tgz#3e277eae59818e7d4caf4174f58a7a00d441336e"
+
 "@babel/helper-regex@7.0.0-beta.56":
   version "7.0.0-beta.56"
   resolved "http://registry.npm.taobao.org/@babel/helper-regex/download/@babel/helper-regex-7.0.0-beta.56.tgz#88d8a15c853892f603193e5adf10c428cd588fc0"
@@ -260,6 +264,12 @@
   resolved "http://registry.npm.taobao.org/@babel/plugin-syntax-dynamic-import/download/@babel/plugin-syntax-dynamic-import-7.0.0-beta.56.tgz#598a311ffc8821b4f4683c4e52b62b896e2d943c"
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.56"
+
+"@babel/plugin-syntax-dynamic-import@^7.0.0-rc.1":
+  version "7.0.0-rc.1"
+  resolved "http://registry.npm.taobao.org/@babel/plugin-syntax-dynamic-import/download/@babel/plugin-syntax-dynamic-import-7.0.0-rc.1.tgz#9bf26d934b968c327e262ecf3a39729bcdec7419"
+  dependencies:
+    "@babel/helper-plugin-utils" "7.0.0-rc.1"
 
 "@babel/plugin-syntax-jsx@7.0.0-beta.56":
   version "7.0.0-beta.56"
@@ -511,6 +521,13 @@
 "@babel/polyfill@^7.0.0-beta.56":
   version "7.0.0-beta.56"
   resolved "http://registry.npm.taobao.org/@babel/polyfill/download/@babel/polyfill-7.0.0-beta.56.tgz#6942d474d0e9cee7124477df11e97ba192764919"
+  dependencies:
+    core-js "^2.5.7"
+    regenerator-runtime "^0.11.1"
+
+"@babel/polyfill@^7.0.0-rc.1":
+  version "7.0.0-rc.1"
+  resolved "http://registry.npm.taobao.org/@babel/polyfill/download/@babel/polyfill-7.0.0-rc.1.tgz#c78e17e64c42cd6a2f5d8edf0f20e18213c0d74d"
   dependencies:
     core-js "^2.5.7"
     regenerator-runtime "^0.11.1"
@@ -1135,6 +1152,16 @@
 "@types/jest@^23.3.1":
   version "23.3.1"
   resolved "http://registry.npm.taobao.org/@types/jest/download/@types/jest-23.3.1.tgz#a4319aedb071d478e6f407d1c4578ec8156829cf"
+
+"@types/lodash-es@^4.17.1":
+  version "4.17.1"
+  resolved "http://registry.npm.taobao.org/@types/lodash-es/download/@types/lodash-es-4.17.1.tgz#56745e5411558362aeca31def918f88f725dd29d"
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash@*":
+  version "4.14.116"
+  resolved "http://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.116.tgz#5ccf215653e3e8c786a58390751033a9adca0eb9"
 
 "@types/minimatch@*":
   version "3.0.3"
@@ -5224,6 +5251,10 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
+lodash-es@^4.17.10:
+  version "4.17.10"
+  resolved "http://registry.npm.taobao.org/lodash-es/download/lodash-es-4.17.10.tgz#62cd7104cdf5dd87f235a837f0ede0e8e5117e05"
+
 lodash._reinterpolate@~3.0.0:
   version "3.0.0"
   resolved "http://registry.npm.taobao.org/lodash._reinterpolate/download/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
@@ -7271,7 +7302,7 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
-rollup-plugin-babel@^4.0.0-beta.7:
+rollup-plugin-babel@^4.0.0-beta.7, rollup-plugin-babel@^4.0.0-beta.8:
   version "4.0.0-beta.8"
   resolved "http://registry.npm.taobao.org/rollup-plugin-babel/download/rollup-plugin-babel-4.0.0-beta.8.tgz#6dac37d8e285ba8f7feb5aaafd99c78d7363a001"
   dependencies:
@@ -7281,6 +7312,15 @@ rollup-plugin-babel@^4.0.0-beta.7:
 rollup-plugin-commonjs@^9.1.4:
   version "9.1.4"
   resolved "http://registry.npm.taobao.org/rollup-plugin-commonjs/download/rollup-plugin-commonjs-9.1.4.tgz#525b701adfd40e314b5bb6888d88edc28e10442f"
+  dependencies:
+    estree-walker "^0.5.1"
+    magic-string "^0.22.4"
+    resolve "^1.5.0"
+    rollup-pluginutils "^2.0.1"
+
+rollup-plugin-commonjs@^9.1.5:
+  version "9.1.5"
+  resolved "http://registry.npm.taobao.org/rollup-plugin-commonjs/download/rollup-plugin-commonjs-9.1.5.tgz#c167d545d0d01f273e632748bff56fe7487b0145"
   dependencies:
     estree-walker "^0.5.1"
     magic-string "^0.22.4"
@@ -7311,6 +7351,13 @@ rollup-pluginutils@^2.0.1, rollup-pluginutils@^2.2.0, rollup-pluginutils@^2.3.0:
 rollup@^0.63.4:
   version "0.63.5"
   resolved "http://registry.npm.taobao.org/rollup/download/rollup-0.63.5.tgz#5543eecac9a1b83b7e1be598b5be84c9c0a089db"
+  dependencies:
+    "@types/estree" "0.0.39"
+    "@types/node" "*"
+
+rollup@^0.64.1:
+  version "0.64.1"
+  resolved "http://registry.npm.taobao.org/rollup/download/rollup-0.64.1.tgz#9188ee368e5fcd43ffbc00ec414e72eeb5de87ba"
   dependencies:
     "@types/estree" "0.0.39"
     "@types/node" "*"

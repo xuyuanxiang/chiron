@@ -13,7 +13,10 @@ const prod = mode === 'production';
 const outputPath = path.join(__dirname, 'public');
 
 module.exports = {
-  entry: './main.js',
+  entry: {
+    main: './main.js',
+    polyfill: '@babel/polyfill',
+  },
   output: {
     path: outputPath,
     publicPath: '/',
@@ -37,9 +40,10 @@ module.exports = {
       root: __dirname,
     }),
     new HtmlWebpackPlugin({
-      inject: true,
+      inject: 'head',
       template: path.join(__dirname, 'index.ejs'),
       favicon: path.join(__dirname, 'favicon.ico'),
+      chunks: ['main'],
       minify: {
         removeComments: prod,
         collapseWhitespace: prod,
