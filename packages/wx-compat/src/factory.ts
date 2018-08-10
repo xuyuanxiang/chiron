@@ -1,32 +1,12 @@
-import { noop, isString } from 'chiron-core';
-import { Options, OptionsEnsured } from './weixin';
-
-/**
- * 对微信小程序API的优化：
- *   无需考虑回调函数及回调格式，简单输入输出纯函数。
- */
-export interface ThunkApi<Input, Output = {}> {
-  name: string;
-
-  (i: Input): Output | undefined;
-}
-
-/**
- * 对微信小程序API的优化：
- *   无需考虑回调函数及回调格式，async函数/返回Promise类型函数。
- */
-export interface PromiseApi<Input, Output = {}> {
-  name: string;
-
-  (i: Input): Promise<Output> | undefined;
-}
-
-/**
- * 微信小程序实际的API
- */
-export interface ActualApi<Input> {
-  (options: Input): void;
-}
+import {
+  noop,
+  isString,
+  WxApiOptions,
+  WxApiOptionsEnsured,
+  ThunkApi,
+  PromiseApi,
+  WxApi,
+} from 'chiron-core';
 
 export interface ExecuteCompleteCallback<Output> {
   (reason?: Error | string | null, res?: Output): void;
@@ -35,15 +15,15 @@ export interface ExecuteCompleteCallback<Output> {
 /**
  * 警戒函数，处理微信小程序API调用参数中回到函数：success，fail，complete未定义的情况
  */
-export function guard<T extends Options>(
+export function guard<T extends WxApiOptions>(
   options: T = <T>{},
-): T & OptionsEnsured {
+): T & WxApiOptionsEnsured {
   const { success = noop, fail = noop, complete = noop } = options;
   return Object.assign(options, { success, fail, complete });
 }
 
 /**
- * 将ThunkApi以及PromiseApi类型的API 转化为 微信实际的API。
+ * 将ThunkApi以及PromiseApi类型的API 转化为 WxApi。
  *
  * @example
  * ```js
@@ -81,9 +61,9 @@ export function guard<T extends Options>(
  * });
  * ```
  */
-export function build<Input extends Options, Output = {}>(
+export function build<Input extends WxApiOptions, Output = {}>(
   api: ThunkApi<Input, Output> | PromiseApi<Input, Output>,
-): ActualApi<Input> {
+): WxApi<Input> {
   return function(actual: Input): void {
     const { success, fail, complete } = guard(actual);
     execute(api, actual, (reason, res) => {

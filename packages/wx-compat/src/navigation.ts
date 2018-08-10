@@ -1,12 +1,10 @@
+import { WxApiNavigationOptions } from 'chiron-core';
 import { build } from './factory';
-import { Options } from './weixin';
 
-export interface NavigatorOptions extends Options {
-  url: string;
-}
-
-export const redirectTo = build(function redirectTo({ url }: NavigatorOptions) {
+export const redirectTo = build(function redirectTo({
+  url,
+}: WxApiNavigationOptions) {
   if (typeof history !== 'undefined') {
-    history.pushState(null, '', url);
+    history.replaceState(null, '', url);
   }
 });

@@ -1,4 +1,4 @@
-export interface PageConfig {
+export interface WxPageConfig {
   disableScroll?: boolean;
   onReachBottomDistance?: number;
   enablePullDownRefresh: boolean;

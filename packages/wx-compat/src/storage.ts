@@ -1,24 +1,16 @@
+import { WxApiGetStorageOptions, WxApiSetStorageOptions } from 'chiron-core';
 import { build } from './factory';
-import { Options } from './weixin';
-
-export interface GetStorageAsyncOptions extends Options {
-  key: string;
-}
-
-export interface SetStorageAsyncOptions extends GetStorageAsyncOptions {
-  data: any;
-}
 
 export const getStorage = build(function getStorage({
   key,
-}: GetStorageAsyncOptions) {
+}: WxApiGetStorageOptions) {
   return getStorageSync(key);
 });
 
 export const setStorage = build(function setStorage({
   key,
   data,
-}: SetStorageAsyncOptions) {
+}: WxApiSetStorageOptions) {
   return setStorageSync(key, data);
 });
 

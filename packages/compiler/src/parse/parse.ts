@@ -9,7 +9,7 @@ import {
 } from 'chiron-core';
 import { ParseOptions } from './ParseOptions';
 import { App, ContentType, File, Program } from '../program';
-import { AppConfig } from '../shared/AppConfig';
+import { WXAppConfig } from '../../../core/src/declarations/weixin/AppConfig';
 
 export async function parse(
   { cwd = process.cwd(), encoding = 'utf8' }: ParseOptions = {
@@ -24,7 +24,7 @@ export async function parse(
     assertIsFile(appJsFile, AppJsNotFound),
   ]);
 
-  let appConfig: AppConfig;
+  let appConfig: WXAppConfig;
   try {
     appConfig = await readJson(appConfigFile, encoding);
   } catch (e) {
