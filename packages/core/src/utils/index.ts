@@ -2,7 +2,6 @@ export * from './assert';
 export * from './asyncImport';
 export * from './bind';
 export * from './compose';
-export * from './guard';
 export * from './isDefined';
 export * from './isFunction';
 export * from './isString';
