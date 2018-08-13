@@ -21,8 +21,7 @@ const config = {
     libraryTarget: 'umd',
   },
   externals: {
-    react: 'react',
-    'react-dom': 'react-dom',
+    preact: 'preact',
   },
   resolve: {
     modules: [

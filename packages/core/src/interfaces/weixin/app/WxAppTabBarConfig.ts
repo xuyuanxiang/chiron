@@ -5,7 +5,7 @@ export interface WXTabBarItem {
   selectedIconPath?: string;
 }
 
-export interface WxTabBarConfig {
+export interface WxAppTabBarConfig {
   color: string;
   selectedColor: string;
   backgroundColor: string;

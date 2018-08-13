@@ -1,5 +1,5 @@
 import { WxApiGetStorageOptions, WxApiSetStorageOptions } from 'chiron-core';
-import { build } from './factory';
+import { build } from '../utils';
 
 export const getStorage = build(function getStorage({
   key,

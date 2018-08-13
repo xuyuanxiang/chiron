@@ -1,4 +1,4 @@
-export interface WxWindowConfig {
+export interface WxAppWindowConfig {
   navigationBarBackgroundColor?: string;
   navigationBarTextStyle?: 'black' | 'white';
   navigationBarTitleText: string;

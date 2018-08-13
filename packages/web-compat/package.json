@@ -3,8 +3,6 @@
   "version": "1.0.0-beta.0",
   "license": "MIT",
   "main": "lib/index.umd.js",
-  "module": "lib/index.js",
-  "jsnext:main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
     "lib"
@@ -14,7 +12,9 @@
     "test": "cross-env NODE_ENV=test BABEL_ENV=test jest -u",
     "build": "cross-env NODE_ENV=production BABEL_ENV=production webpack --progress && tsc --emitDeclarationOnly"
   },
-  "dependencies": {},
+  "dependencies": {
+    "preact": "^8.3.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.56",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.56",
@@ -43,8 +43,7 @@
     "webpack-command": "^0.4.1"
   },
   "browserslist": [
-    "android >= 4.2",
-    "ios >= 9.3"
+    "> 0.5 in CN"
   ],
   "babel": {
     "presets": [

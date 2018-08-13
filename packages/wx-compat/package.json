@@ -35,8 +35,7 @@
     "typescript": "^3.0.1"
   },
   "browserslist": [
-    "android >= 4.2",
-    "ios >= 9.3"
+    "> 0.5% in CN"
   ],
   "babel": {
     "presets": [
@@ -88,5 +87,8 @@
       "default",
       "jest-spec-reporter"
     ]
+  },
+  "dependencies": {
+    "chiron-core": "^1.0.0-beta.0"
   }
 }

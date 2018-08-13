@@ -1,11 +1,11 @@
-import { createElement, Children, ReactNode, StatelessComponent } from 'react';
+import { h, RenderableProps, FunctionalComponent } from 'preact';
 import { PageProps } from './page-props';
 import { page } from './page.less';
 
-export const Page: StatelessComponent<PageProps> = ({
+export const Page: FunctionalComponent<PageProps> = ({
   children,
-}: PageProps & { children?: ReactNode }) =>
-  createElement('div', { className: page }, Children.only(children));
+}: RenderableProps<PageProps>) =>
+  children ? h('div', { className: page }, children) : null;
 
 Page.displayName = 'page';
 

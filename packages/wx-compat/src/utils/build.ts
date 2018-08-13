@@ -1,26 +1,12 @@
 import {
-  noop,
   isString,
   WxApiOptions,
-  WxApiOptionsEnsured,
   ThunkApi,
   PromiseApi,
   WxApi,
 } from 'chiron-core';
-
-export interface ExecuteCompleteCallback<Output> {
-  (reason?: Error | string | null, res?: Output): void;
-}
-
-/**
- * 警戒函数，处理微信小程序API调用参数中回到函数：success，fail，complete未定义的情况
- */
-export function guard<T extends WxApiOptions>(
-  options: T = <T>{},
-): T & WxApiOptionsEnsured {
-  const { success = noop, fail = noop, complete = noop } = options;
-  return Object.assign(options, { success, fail, complete });
-}
+import { guard } from './guard';
+import { execute } from './execute';
 
 /**
  * 将ThunkApi以及PromiseApi类型的API 转化为 WxApi。
@@ -74,38 +60,17 @@ export function build<Input extends WxApiOptions, Output = {}>(
         } else if (reason && reason.message) {
           error = reason.message;
         }
-        const result = Object.assign({
-          errMsg: [`${api.name}:fail`, error || ''].join(' '),
-        });
+        const result = { errMsg: [`${api.name}:fail`, error || ''].join(' ') };
         fail(result);
         complete(result);
         return;
       }
-      const result = Object.assign({ errMsg: `${api.name}:ok` }, res || {});
+      const result =
+        typeof res === 'object'
+          ? Object.assign(res, { errMsg: `${api.name}:ok` })
+          : { errMsg: `${api.name}:ok` };
       success(result);
       complete(result);
     });
   };
-}
-
-/**
- * 执行ThunkApi以及PromiseApi类型的API，取出返回结果。
- */
-function execute<Input, Output = {}>(
-  api: ThunkApi<Input, Output> | PromiseApi<Input, Output>,
-  options: Input,
-  done: ExecuteCompleteCallback<Output>,
-) {
-  try {
-    const rtn: Output | Promise<Output> | undefined = api(options);
-    if (!rtn) {
-      done();
-    } else if (rtn instanceof Promise) {
-      rtn.then(res => done(null, res)).catch(reason => done(reason));
-    } else {
-      done(null, rtn);
-    }
-  } catch (e) {
-    done(e);
-  }
 }
