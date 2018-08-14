@@ -22,6 +22,12 @@ export const request = build(function request({
     }
     xhr.onreadystatechange = function() {
       if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (responseType)
+          resolve({
+            statusCode: xhr.status,
+            data: null,
+            header: xhr.getAllResponseHeaders(),
+          });
       }
     };
     if (typeof data === 'string') {
