@@ -1,10 +1,10 @@
-import { WxComponentConstructorArguments } from './WxComponentConstructorArguments';
+import { WxComponentOptions } from './WxComponentOptions';
 import { WxComponentBehavior } from './WxComponentBehavior';
 import { WxEventOptions } from '../common/WxEventOptions';
 import { WxComponentRelationMap } from './WxComponentRelationMap';
 
 export interface WxComponent<Data = { [key: string]: any }>
-  extends WxComponentConstructorArguments {
+  extends WxComponentOptions {
   /**
    * 组件的文件路径
    */

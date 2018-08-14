@@ -6,5 +6,6 @@ export * from './WxApiGetStorageOptions';
 export * from './WxApiNavigationOptions';
 export * from './WxApiOptions';
 export * from './WxApiOptionsEnsured';
+export * from './WxApiRequestOptions';
 export * from './WxApiSetStorageOptions';
 export * from './WxApiSuccessCallback';

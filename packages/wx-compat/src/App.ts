@@ -1,3 +1,11 @@
-import { WxAppLifecycleHook } from 'chiron-core';
+import { WxAppDelegate } from 'chiron-core';
 
-export function App(hook: WxAppLifecycleHook) {}
+let _delegate: WxAppDelegate<any>;
+
+export function App(delegate: WxAppDelegate<any>) {
+  _delegate = delegate;
+}
+
+export function getApp(): WxAppDelegate | undefined {
+  return _delegate;
+}

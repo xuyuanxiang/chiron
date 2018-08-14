@@ -1,4 +1,6 @@
-import { noop, WxApiOptions, WxApiOptionsEnsured } from 'chiron-core';
+import { WxApiOptions, WxApiOptionsEnsured } from 'chiron-core';
+
+function noop() {}
 
 /**
  * 警戒函数，处理微信小程序API调用参数中回到函数：success，fail，complete未定义的情况

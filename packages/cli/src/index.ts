@@ -5,7 +5,7 @@
 // const semver = require('semver');
 import { EOL, cpus } from 'os';
 import sade from 'sade';
-import { logPatch } from 'chiron-core';
+import { logPatch } from 'chiron-tools';
 import { version } from '../package.json';
 
 global.__LOG_LEVEL__ = 'info';

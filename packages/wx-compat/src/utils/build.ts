@@ -1,10 +1,4 @@
-import {
-  isString,
-  WxApiOptions,
-  ThunkApi,
-  PromiseApi,
-  WxApi,
-} from 'chiron-core';
+import { WxApiOptions, ThunkApi, PromiseApi, WxApi } from 'chiron-core';
 import { guard } from './guard';
 import { execute } from './execute';
 
@@ -55,7 +49,7 @@ export function build<Input extends WxApiOptions, Output = {}>(
     execute(api, actual, (reason, res) => {
       if (reason) {
         let error;
-        if (isString(reason)) {
+        if (typeof reason === 'string') {
           error = reason;
         } else if (reason && reason.message) {
           error = reason.message;

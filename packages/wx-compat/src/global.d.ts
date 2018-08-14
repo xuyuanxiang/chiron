@@ -1,22 +1,29 @@
 import {
   WxApi,
-  WxApiGetStorageOptions,
   WxApiNavigationOptions,
-  WxApiSetStorageOptions,
-  WxAppLifecycleHook,
+  WxAppDelegate,
+  WxPageDelegate,
+  WxComponentOptions,
+  WxPage,
 } from 'chiron-core';
 
-interface Window {
-  wx: {
-    redirectTo: WxApi<WxApiNavigationOptions>;
-    getStorageSync: WxApi<WxApiGetStorageOptions>;
-    setStorageSync: WxApi<WxApiSetStorageOptions>;
-    [key: string]: WxApi<any>;
-  };
+declare global {
+  interface Window {
+    wx: {
+      redirectTo: WxApi<WxApiNavigationOptions>;
+      getStorageSync: <T>(key: string) => T | null | never;
+      setStorageSync: <T>(key: string, data: T) => void | never;
+      [key: string]: WxApi<any> | Function;
+    };
 
-  App(hooks: WxAppLifecycleHook): void;
+    App(delegate: WxAppDelegate<any>): void;
 
-  Page(): void;
+    getApp(): WxAppDelegate<any> | undefined;
 
-  Component(): void;
+    Page(delegate: WxPageDelegate<any>): void;
+
+    getCurrentPages(): WxPage[];
+
+    Component(options: WxComponentOptions): void;
+  }
 }

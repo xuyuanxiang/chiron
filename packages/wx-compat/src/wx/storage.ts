@@ -14,15 +14,15 @@ export const setStorage = build(function setStorage({
   return setStorageSync(key, data);
 });
 
-export function getStorageSync(key: string): any | never {
+export function getStorageSync<T>(key: string): T | null | never {
   const result = localStorage.getItem(key);
   if (result) {
     return JSON.parse(result);
   }
-  return result;
+  return null;
 }
 
-export function setStorageSync(key: string, data: any): void | never {
+export function setStorageSync<T>(key: string, data: T): void | never {
   localStorage.setItem(
     key,
     typeof data === 'string' ? data : JSON.stringify(data),

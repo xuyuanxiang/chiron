@@ -7,18 +7,18 @@
     "build": "cross-env NODE_ENV=production BABEL_ENV=production webpack"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0-beta.56",
+    "@babel/polyfill": "^7.0.0-rc.1",
     "chiron-core": "^1.0.0-beta.0",
     "chiron-web-compat": "^1.0.0-beta.0",
     "chiron-wx-compat": "^1.0.0-beta.0",
     "preact": "^8.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.56",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.56",
-    "@babel/preset-env": "^7.0.0-beta.56",
-    "@babel/preset-react": "^7.0.0-beta.56",
-    "@babel/preset-typescript": "^7.0.0-beta.56",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/preset-react": "^7.0.0-rc.1",
+    "@babel/preset-typescript": "^7.0.0-rc.1",
     "@types/node": "8.x",
     "babel-core": "^7.0.0-0",
     "babel-loader": "^8.0.0-beta",

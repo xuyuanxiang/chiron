@@ -3,7 +3,7 @@ import { WxComponentLifecycleHook } from './WxComponentLifecycleHook';
 import { WxComponentBehavior } from './WxComponentBehavior';
 import { WxComponentRelationMap } from './WxComponentRelationMap';
 
-export interface WxComponentConstructorArguments<Data = { [key: string]: any }>
+export interface WxComponentOptions<Data = { [key: string]: any }>
   extends WxComponentLifecycleHook {
   /**
    * 组件的对外属性，是属性名到属性设置的映射表，属性设置中可包含三个字段， type 表示属性类型、 value 表示属性初始值、 observer 表示属性值被更改时的响应函数

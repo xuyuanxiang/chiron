@@ -23,13 +23,14 @@
   "dependencies": {
     "chiron-compiler": "^1.0.0-beta.0",
     "chiron-core": "^1.0.0-beta.0",
+    "chiron-tools": "^1.0.0-beta.0",
     "webpack-serve": "^2.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.56",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.56",
-    "@babel/preset-env": "^7.0.0-beta.56",
-    "@babel/preset-typescript": "^7.0.0-beta.56",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/preset-typescript": "^7.0.0-rc.1",
     "@types/cross-spawn": "^6.0.0",
     "@types/del": "^3.0.1",
     "@types/inquirer": "^0.0.42",
