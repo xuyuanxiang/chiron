@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should parse WXML 1`] = `
+Object {
+  "childNodes": Array [
+    Object {
+      "attrs": Array [],
+      "childNodes": Array [],
+      "namespaceURI": "http://www.w3.org/1999/xhtml",
+      "nodeName": "view",
+      "parentNode": [Circular],
+      "tagName": "view",
+    },
+  ],
+  "nodeName": "#document-fragment",
+}
+`;

@@ -17,7 +17,7 @@
     "prebuild": "yarn clean",
     "test": "cross-env NODE_ENV=test BABEL_ENV=test jest -u",
     "watch": "cross-env NODE_ENV=development tsc -w",
-    "build": "cross-env NODE_ENV=production BABEL_ENV=production rollup -c && tsc --emitDeclarationOnly"
+    "build": "cross-env NODE_ENV=production BABEL_ENV=production rollup -c && tsc --emitDeclarationOnly -p tsconfig.production.json"
   },
   "dependencies": {
     "@babel/code-frame": "^7.0.0-rc.1",

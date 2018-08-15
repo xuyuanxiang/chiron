@@ -28,6 +28,7 @@ export default [
       'events',
       'util',
       'crypto',
+      'os',
       'chiron-core',
     ],
     plugins: [

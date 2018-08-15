@@ -79,7 +79,7 @@ const config = {
                 options: {
                   importLoaders: 2,
                   modules: true,
-                  localIdentName: 'chiron__[local]__[hash:base64:8]',
+                  localIdentName: 'chiron__[local]-[hash:base64:8]',
                   minimize: !__DEV__,
                   sourceMap: !__DEV__,
                 },
