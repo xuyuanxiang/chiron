@@ -1,12 +1,11 @@
 {
   "name": "chiron",
-  "version": "1.0.0-beta.0",
+  "description": "Chiron framework development kits",
   "private": true,
   "license": "MIT",
   "scripts": {
     "start": "lerna run start --parallel --concurrency 3",
-    "build": "lerna run build --stream",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,less,scss,md}\""
+    "build": "lerna run build --stream"
   },
   "engines": {
     "node": ">= 8"
@@ -15,11 +14,6 @@
     "packages/*"
   ],
   "devDependencies": {
-    "lerna": "^3.0.0-rc.0",
-    "pre-commit": "^1.2.2",
-    "prettier": "1.14.0"
-  },
-  "pre-commit": [
-    "format"
-  ]
+    "lerna": "^3.3.0"
+  }
 }
