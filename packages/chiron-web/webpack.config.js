@@ -14,10 +14,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
-    alias: {
-      react: 'preact-compat',
-      'react-dom': 'preact-compat',
-    },
   },
   output: {
     path: path.join(__dirname, outputDir),
@@ -26,12 +22,6 @@ module.exports = {
     devtoolModuleFilenameTemplate: info =>
       path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
-  externals: prod
-    ? {
-        preact: 'preact',
-        '@wosai/chiron-web-compat': '__CHIRON',
-      }
-    : {},
   module: {
     strictExportPresence: true,
     rules: [
