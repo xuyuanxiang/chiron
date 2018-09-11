@@ -1,16 +1,21 @@
 const path = require('path');
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
 
 const outputDir = 'public';
+const publicPath = '/';
 
 module.exports = {
   entry: {
     app: ['./src/main.tsx'],
+    polyfill: ['@babel/polyfill', 'isomorphic-fetch'],
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
@@ -19,6 +24,7 @@ module.exports = {
     path: path.join(__dirname, outputDir),
     filename: '[name].js',
     chunkFilename: '[name].[id].js',
+    publicPath: '/',
     devtoolModuleFilenameTemplate: info =>
       path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
@@ -27,6 +33,7 @@ module.exports = {
     rules: [
       {
         enforce: 'pre',
+        include: /node_modules/,
         test: /\.jsx?$/,
         loader: 'source-map-loader',
       },
@@ -43,19 +50,64 @@ module.exports = {
             ],
             use: [
               {
-                loader: 'url-loader',
+                loader: require.resolve('url-loader'),
                 options: {
-                  limit: prod ? 10240 : 1024000,
+                  limit: prod ? 10240 : 10240000,
                   name: '[name]_[hash:8].[ext]',
                 },
               },
             ],
           },
           {
-            test: /\.tsx?$/,
-            exclude: /node_modules/,
+            test: /\.less$/,
             include: path.join(__dirname, 'src'),
+            exclude: /node_modules/,
+            use: [
+              prod ? {
+                loader: MiniCssExtractPlugin.loader,
+                options: {},
+              } : 'style-loader',
+              {
+                loader: 'css-loader',
+                options: {
+                  modules: true,
+                  sourceMap: !prod,
+                  localIdentName: prod ? '[name]-[hash:base64:8]' : '[path][name]-[hash:base64:5]',
+                  importLoaders: 2
+                },
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  ident: 'postcss',
+                  plugins: () => [
+                    require('postcss-preset-env')(),
+                    require('postcss-px2rem')({remUnit: 75})
+                  ],
+                }
+              },
+              'less-loader',
+            ],
+          },
+          {
+            test: /\.tsx?$/,
+            include: path.join(__dirname, 'src'),
+            exclude: /node_modules/,
             use: 'babel-loader',
+          },
+          {
+            exclude: [
+              /\.([ls])?[ace]ss$/,
+              /\.tsx?$/,
+              /\.jsx?$/,
+              /\.html$/,
+              /\.ejs$/,
+              /\.json$/,
+            ],
+            loader: require.resolve('file-loader'),
+            options: {
+              name: '[name]_[hash:8].[ext]',
+            },
           },
         ],
       },
@@ -68,8 +120,10 @@ module.exports = {
       allowExternal: true,
       root: __dirname,
     }),
+    new webpack.DefinePlugin({ __DEV__: JSON.stringify(!prod), __PUBLIC_PATH__: JSON.stringify(publicPath) }),
     new HtmlWebpackPlugin({
-      inject: true,
+      inject: 'head',
+      chunks: ['app'],
       template: path.join(__dirname, 'src', 'index.ejs'),
       favicon: path.join(__dirname, 'src', 'favicon.ico'),
       minify: {
@@ -85,9 +139,10 @@ module.exports = {
         minifyURLs: prod,
       },
     }),
-  ],
+  ].concat(prod ? [new MiniCssExtractPlugin({
+    filename: '[name].css',
+  })] : []),
   optimization: {
-    minimize: false,
     minimizer: [
       new UglifyJsPlugin({
         cache: !prod,
@@ -106,6 +161,11 @@ module.exports = {
             comments: false,
             ascii_only: true,
           },
+        },
+      }),
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorPluginOptions: {
+          preset: ['default', { discardComments: { removeAll: true } }],
         },
       }),
     ],
