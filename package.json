@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "lerna run start --parallel --concurrency 3",
-    "build": "lerna run build --stream"
+    "build": "lerna run build --stream",
+    "precommit": "lint-staged"
   },
   "engines": {
     "node": ">= 8"
@@ -14,6 +15,15 @@
     "packages/*"
   ],
   "devDependencies": {
-    "lerna": "^3.3.0"
+    "husky": "^1.1.2",
+    "lerna": "^3.4.3",
+    "lint-staged": "^7.3.0",
+    "prettier": "1.14.3"
+  },
+  "lint-staged": {
+    "*.{js,ts,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

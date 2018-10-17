@@ -4,11 +4,12 @@
 *.ts text
 *.tsx text
 *.json text
-*.wxml text
-*.wxss text
 *.less text
 *.scss text
 *.css text
+*.vue text
+*.html text
+*.md text
 *.jpg binary
 *.jpeg binary
 *.png binary

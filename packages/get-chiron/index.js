@@ -17,11 +17,8 @@ function tryYarn() {
     encoding: 'utf8',
   });
   const prefix = dirname(bin);
-  execSync(
-    `yarn config set prefix ${prefix} && yarn global add chiron-cli --prefix ${prefix}`,
-    {
-      stdio: 'inherit',
-      encoding: 'utf8',
-    },
-  );
+  execSync(`yarn global add chiron-cli --prefix ${prefix}`, {
+    stdio: 'inherit',
+    encoding: 'utf8',
+  });
 }
