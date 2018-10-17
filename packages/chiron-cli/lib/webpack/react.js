@@ -36,4 +36,3 @@ function default_1(config) {
     //     .set('react-dom', 'preact-compat');
 }
 exports.default = default_1;
-;

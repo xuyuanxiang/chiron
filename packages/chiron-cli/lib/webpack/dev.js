@@ -37,4 +37,3 @@ function default_1(config) {
     });
 }
 exports.default = default_1;
-;

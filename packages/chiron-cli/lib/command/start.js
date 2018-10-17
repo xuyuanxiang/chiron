@@ -8,9 +8,7 @@ const compile_1 = __importDefault(require("../compiler/compile"));
 require("../autoInjectGlobals");
 require("../autoPatchLog");
 const config = new webpack_chain_1.default();
-config
-    .context(process.cwd())
-    .mode('development');
+config.context(process.cwd()).mode('development');
 require('../webpack/common')(config);
 require('../webpack/dev')(config);
 compile_1.default(config);

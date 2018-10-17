@@ -8,7 +8,7 @@ const DEBUG = process.env.DEBUG;
 const LEVELS = ['debug', 'log', 'info', 'warn', 'error'];
 global.__CHIRON_LOG_LEVEL__ = typeof DEBUG !== 'undefined' ? 'debug' : 'info';
 function shouldLog(level) {
-    return (LEVELS.indexOf(level) >= LEVELS.indexOf(global.__CHIRON_LOG_LEVEL__ || 'info'));
+    return LEVELS.indexOf(level) >= LEVELS.indexOf(global.__CHIRON_LOG_LEVEL__ || 'info');
 }
 LEVELS.forEach(level => {
     const origin = console[level];

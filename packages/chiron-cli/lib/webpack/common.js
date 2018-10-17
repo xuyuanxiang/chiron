@@ -13,16 +13,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path = __importStar(require("path"));
 const mini_css_extract_plugin_1 = __importDefault(require("mini-css-extract-plugin"));
 const clean_webpack_plugin_1 = __importDefault(require("clean-webpack-plugin"));
-const browserslist = [
-    '>= 0.5% in CN',
-];
+const browserslist = ['>= 0.5% in CN'];
 function default_1(config) {
-    config
-        .resolve.extensions.merge(['.js'])
+    config.resolve.extensions
+        .merge(['.js'])
         .end()
         .end()
-        .module
-        .rule(global.__CHIRON_RULE_JS__) // babel
+        .module.rule(global.__CHIRON_RULE_JS__) // babel
         .test(/\.js$/)
         .include.add(global.__CHIRON_DIR_SRC__)
         .end()
@@ -31,7 +28,9 @@ function default_1(config) {
         .use(global.__CHIRON_RULE_JS__STAGE_BABEL__)
         .loader(require.resolve('babel-loader'))
         .options({
-        cacheDirectory: config.get('mode') === 'development' ? path.join(global.__CHIRON_DIR_DIST__, '.cache') : false,
+        cacheDirectory: config.get('mode') === 'development'
+            ? path.join(global.__CHIRON_DIR_DIST__, '.cache')
+            : false,
         babelrc: false,
         preset: [['@babel/preset-env', { targets: browserslist }]],
     })
@@ -62,9 +61,7 @@ function default_1(config) {
         .options({
         ident: 'postcss',
         sourceMap: config.get('mode') === 'development' ? 'inline' : false,
-        plugins: () => [
-            require('postcss-preset-env')({ browsers: browserslist }),
-        ],
+        plugins: () => [require('postcss-preset-env')({ browsers: browserslist })],
     })
         .end()
         .use(global.__CHIRON_RULE_LESS_STAGE_LESS_LOADER__)
@@ -78,6 +75,9 @@ function default_1(config) {
         .end()
         .when(config.get('mode') === 'production', config => config.plugin('css-extract').use(mini_css_extract_plugin_1.default))
         .plugin('clean')
-        .use(clean_webpack_plugin_1.default, [[config.output.get('path') || global.__CHIRON_DIR_SRC__], { root: config.get('context') }]);
+        .use(clean_webpack_plugin_1.default, [
+        [config.output.get('path') || global.__CHIRON_DIR_SRC__],
+        { root: config.get('context') },
+    ]);
 }
 exports.default = default_1;
