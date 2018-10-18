@@ -1,0 +1,12 @@
+{
+  "name": "chiron-example",
+  "version": "1.0.0",
+  "private": false,
+  "dependencies": {
+    "chiron-cli": "2.0.0-beta.0",
+    "chiron-runtime": "2.0.0-beta.0",
+    "chiron-angularjs-plugin": "2.0.0-beta.0",
+    "chiron-vue-plugin": "2.0.0-beta.0",
+    "chiron-react-plugin": "2.0.0-beta.0"
+  }
+}

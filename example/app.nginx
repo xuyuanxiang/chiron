@@ -1,0 +1,18 @@
+server {
+  listen 80;
+  root /usr/share/nginx/html;
+  server_name localhost;
+  index index.html;
+  charset utf-8;
+  expires off;
+  etag off;
+  if_modified_since off;
+  add_header Last-Modified $date_gmt;
+  add_header Cache-Control 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0';
+
+  access_log  /var/log/nginx/access.log  main;
+
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+}
