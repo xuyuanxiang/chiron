@@ -1,6 +1,6 @@
 {
   "name": "chiron-vue-plugin",
-  "version": "1.0.0-beta.0",
+  "version": "2.0.0-beta.0",
   "license": "MIT",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
@@ -28,11 +28,12 @@
     "webpack-chain": "^5.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-typescript": "^7.1.0",
     "@types/node": "8.x",
-    "babel-jest": "^23.6.0",
     "babel-core": "^7.0.0-0",
+    "babel-jest": "^23.6.0",
     "cross-env": "^5.2.0",
     "jest": "^23.6.0",
     "jest-spec-reporter": "^1.0.5",

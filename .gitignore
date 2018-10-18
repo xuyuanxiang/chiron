@@ -570,4 +570,4 @@ flycheck_*.el
 .dir-locals.el
 .cache
 .rpt2_cache
-
+packages/*/lib

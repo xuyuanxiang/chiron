@@ -4,9 +4,11 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "lerna run start --parallel --concurrency 3",
-    "build": "lerna run build --stream",
-    "precommit": "lint-staged"
+    "clean": "lerna clean",
+    "test": "lerna run test --stream --scope chiron-*-plugin",
+    "build": "lerna run build --parallel --concurrency 3 --scope chiron-*",
+    "precommit": "lint-staged",
+    "ls": "lerna list"
   },
   "engines": {
     "node": ">= 8"
