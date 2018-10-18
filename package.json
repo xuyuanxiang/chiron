@@ -6,8 +6,7 @@
   "scripts": {
     "clean": "lerna clean",
     "test": "lerna run test --stream --scope chiron-*-plugin",
-    "build": "lerna run build --parallel --concurrency 3 --scope chiron-*",
-    "precommit": "lint-staged",
+    "build": "lerna run build --parallel --concurrency 4 --scope chiron-*",
     "ls": "lerna list"
   },
   "engines": {
@@ -21,6 +20,11 @@
     "lerna": "^3.4.3",
     "lint-staged": "^7.3.0",
     "prettier": "1.14.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.{js,ts,json,md}": [
