@@ -1,6 +1,6 @@
 import Config from 'webpack-chain';
 
-export default function(config: Config) {
+export default function ChironReactPlugin(config: Config): void {
   config.module
     .rule(global.__CHIRON_RULE_REACT__)
     .test(/\.jsx?$/)

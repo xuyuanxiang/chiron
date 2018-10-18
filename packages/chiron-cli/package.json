@@ -65,17 +65,19 @@
     "build": "cross-env NODE_ENV=production tsc"
   },
   "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "8.0.0"
+          }
+        }
+      ]
+    ],
     "env": {
       "test": {
         "presets": [
-          [
-            "@babel/preset-env",
-            {
-              "targets": {
-                "node": "8.0.0"
-              }
-            }
-          ],
           "@babel/preset-typescript"
         ]
       }
