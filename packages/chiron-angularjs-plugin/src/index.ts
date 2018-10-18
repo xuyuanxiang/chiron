@@ -3,7 +3,7 @@ import Config from 'webpack-chain';
 export default function(config: Config) {
   config.module
     .rule(global.__CHIRON_RULE_ANGULAR_JS__)
-    .test(/\.tpl\.html$/)
+    .test(/\.html$/)
     .include.add(global.__CHIRON_DIR_SRC__)
     .end()
     .exclude.add(/node_modules/)

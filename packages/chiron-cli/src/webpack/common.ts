@@ -16,7 +16,7 @@ export default function(config: Config): void {
     .end()
     .exclude.add(/node_modules/)
     .end()
-    .use(global.__CHIRON_RULE_JS__STAGE_BABEL__)
+    .use(global.__CHIRON_RULE_JS__)
     .loader(require.resolve('babel-loader'))
     .options({
       cacheDirectory:
@@ -34,14 +34,14 @@ export default function(config: Config): void {
     .end()
     .exclude.add(/node_modules/)
     .end()
-    .use(global.__CHIRON_RULE_LESS_STAGE_STYLE_LOADER__)
+    .use(global.__CHIRON_LOADER_STYLE__)
     .loader(
       config.get('mode') === 'production'
         ? MiniCSSExtractPlugin.loader
         : require.resolve('style-loader'),
     )
     .end()
-    .use(global.__CHIRON_RULE_LESS_STAGE_CSS_LOADER__)
+    .use(global.__CHIRON_LOADER_CSS__)
     .loader(require.resolve('css-loader'))
     .options({
       modules: true,
@@ -50,7 +50,7 @@ export default function(config: Config): void {
       sourceMap: config.get('mode') === 'development',
     })
     .end()
-    .use(global.__CHIRON_RULE_LESS_STAGE_POSTCSS_LOADER__)
+    .use(global.__CHIRON_LOADER_POSTCSS__)
     .loader(require.resolve('postcss-loader'))
     .options({
       ident: 'postcss',
@@ -58,7 +58,7 @@ export default function(config: Config): void {
       plugins: () => [require('postcss-preset-env')({ browsers: browserslist })],
     })
     .end()
-    .use(global.__CHIRON_RULE_LESS_STAGE_LESS_LOADER__)
+    .use(global.__CHIRON_LOADER_LESS__)
     .loader(require.resolve('less-loader'))
     .options({
       javascriptEnabled: true,
