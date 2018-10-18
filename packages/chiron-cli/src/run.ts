@@ -21,7 +21,7 @@ export default function(
     while (true) {
       const { error, stderr, stdout, signal, status } = sync(
         'node',
-        [require.resolve(`./commands/${command}`)],
+        [require.resolve(`./command/${command}`)],
         {
           env,
           stdio: 'pipe',
@@ -40,7 +40,7 @@ export default function(
     }
   } else if (restart) {
     for (let i = 0; i < restart; i++) {
-      const { error, signal, status } = sync('node', [require.resolve(`./commands/${command}`)], {
+      const { error, signal, status } = sync('node', [require.resolve(`./command/${command}`)], {
         stdio: 'inherit',
       });
       console.debug('command:', command, 'result: signal=', signal, 'status=', status);

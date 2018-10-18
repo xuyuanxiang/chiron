@@ -5,7 +5,7 @@ import CleanPlugin from 'clean-webpack-plugin';
 
 const browserslist = ['>= 0.5% in CN'];
 
-export default function(config: Config): void {
+export function common(config: Config): void {
   config.resolve.extensions
     .merge(['.js'])
     .end()

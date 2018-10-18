@@ -3,7 +3,7 @@ import history from 'connect-history-api-fallback';
 import convert from 'koa-connect';
 import * as path from 'path';
 
-export default function(config: Config) {
+export function dev(config: Config): void {
   config.when(config.get('mode') === 'development', config => {
     config.set('serve', {
       add: (app: any) => {
