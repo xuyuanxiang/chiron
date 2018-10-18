@@ -3,10 +3,28 @@
   "version": "1.0.0",
   "private": false,
   "dependencies": {
+    "aliyun-oss-webpack-plugin": "^3.0.2",
     "chiron-cli": "2.0.0-beta.0",
     "chiron-runtime": "2.0.0-beta.0",
     "chiron-angularjs-plugin": "2.0.0-beta.0",
     "chiron-vue-plugin": "2.0.0-beta.0",
-    "chiron-react-plugin": "2.0.0-beta.0"
+    "chiron-react-plugin": "2.0.0-beta.0",
+    "husky": "^1.1.2",
+    "lint-staged": "^7.3.0",
+    "prettier": "1.14.3"
+  },
+  "browserslist": [
+    ">= 0.5% in CN"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue,css,less,scss,json}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

@@ -29,10 +29,8 @@ export default [
       'events',
       'util',
       'querystring',
-      // 'vue-loader',
-      // 'vue-template-compiler',
-      // 'vue-style-loader',
-      'vue',
+      'url',
+      'history/createBrowserHistory',
     ],
     plugins: [
       json(),

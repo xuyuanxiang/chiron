@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "lerna clean",
     "test": "lerna run test --stream --scope chiron-*-plugin",
-    "build": "lerna run build --parallel --concurrency 4 --scope chiron-*",
+    "build": "lerna run build --parallel --concurrency 5 --scope chiron-*",
     "ls": "lerna list"
   },
   "engines": {

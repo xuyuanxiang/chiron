@@ -22,18 +22,7 @@ export default [
 ].map(it =>
   Object.assign(it, {
     input: 'src/index.ts',
-    external: [
-      'path',
-      'assert',
-      'fs',
-      'events',
-      'util',
-      'querystring',
-      // 'vue-loader',
-      // 'vue-template-compiler',
-      // 'vue-style-loader',
-      'vue',
-    ],
+    external: ['path', 'assert', 'fs', 'events', 'util', 'querystring', 'angular'],
     plugins: [
       json(),
       babel({

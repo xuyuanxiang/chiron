@@ -22,7 +22,7 @@ export default [
 ].map(it =>
   Object.assign(it, {
     input: 'src/index.ts',
-    external: ['path', 'assert', 'fs', 'events', 'util'],
+    external: ['path', 'assert', 'fs', 'events', 'util', 'react', 'react-dom', 'webpack-chain'],
     plugins: [
       json(),
       babel({
