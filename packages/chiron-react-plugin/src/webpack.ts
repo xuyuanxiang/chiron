@@ -3,10 +3,11 @@ import Config from 'webpack-chain';
 export function webpack(config: Config): void {
   config.resolve.extensions
     .add('.jsx')
+    .add('.tsx')
     .end()
     .end()
     .module.rule(global.__CHIRON_RULE_REACT__)
-    .test(/\.jsx?$/)
+    .test(/\.(j|t)sx?$/)
     .use(global.__CHIRON_LOADER_BABEL__)
     .tap(options => {
       const presets: any[] = [];

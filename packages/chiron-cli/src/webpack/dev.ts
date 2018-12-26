@@ -1,7 +1,6 @@
 import Config from 'webpack-chain';
 import history from 'connect-history-api-fallback';
 import convert from 'koa-connect';
-import * as path from 'path';
 
 export function dev(config: Config): void {
   config.when(config.get('mode') === 'development', config => {
@@ -19,7 +18,7 @@ export function dev(config: Config): void {
       .rule('source-map')
       .test(/\.js$/)
       .pre()
-      .exclude.add(path.join(config.get('context'), 'src'))
+      .exclude.add(global.__CHIRON_DIR_SRC__)
       .end()
       .include.add(/node_modules/)
       .end()

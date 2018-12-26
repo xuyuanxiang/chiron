@@ -1,4 +1,4 @@
-export default function(info: Error | Buffer | string) {
+export default function(info: Error | Buffer | string): void {
   console.error(info);
-  process.exit(1);
+  process.exit(2);
 }

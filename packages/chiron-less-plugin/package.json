@@ -1,5 +1,5 @@
 {
-  "name": "chiron-angularjs-plugin",
+  "name": "chiron-less-plugin",
   "version": "2.0.0-beta.0",
   "license": "MIT",
   "main": "lib/index.cjs.js",
@@ -21,21 +21,21 @@
     "build": "cross-env NODE_ENV=production BABEL_ENV=production rollup -c && tsc --emitDeclarationOnly"
   },
   "dependencies": {
-    "html-loader": "^0.5.5"
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0"
   },
   "peerDependencies": {
     "chiron-cli": "*",
-    "angular": "*",
     "webpack-chain": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-typescript": "^7.1.0",
-    "@types/angular": "^1.6.51",
     "@types/node": "8.x",
-    "babel-core": "^7.0.0-0",
+    "@types/react": "^16.4.18",
+    "@types/react-dom": "^16.0.9",
     "babel-jest": "^23.6.0",
+    "babel-core": "^7.0.0-0",
     "cross-env": "^5.2.0",
     "jest": "^23.6.0",
     "jest-spec-reporter": "^1.0.5",

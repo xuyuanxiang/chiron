@@ -43,10 +43,11 @@ export default function(
       const { error, signal, status } = sync('node', [require.resolve(`./command/${command}`)], {
         stdio: 'inherit',
       });
-      console.debug('command:', command, 'result: signal=', signal, 'status=', status);
-      if (error || status !== 0) {
-        if (i + 1 === restart) {
+      console.debug('command:', command, 'result:', status);
+      if (status !== 0) {
+        if (status === 2 || i + 1 === restart) {
           error && console.error(error.message);
+          break;
         } else {
           console.warn('restart...');
         }
